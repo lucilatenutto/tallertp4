@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isTransitioning = false;
   const DEBOUNCE_TIME_MS = 350; // Filtro antirrebote para sensores físicos
 
-  // Web Audio API para simular el "clic" mecánico de relé telefónico al avanzar
+  // Web Audio API para simular el "clic" mecánico de relé telefónico al avanzar;
   let audioCtx = null;
   function playTelephoneClick() {
     try {
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Teclas para AVANZAR:
     // Barra espaciadora, Flecha Derecha, Flecha Abajo, Enter, PageDown
     const nextKeys = ['Space', 'ArrowRight', 'ArrowDown', 'Enter', 'PageDown', ' '];
-    
+
     // Teclas para RETROCEDER:
     // Flecha Izquierda, Flecha Arriba, Backspace, PageUp
     const prevKeys = ['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'];
