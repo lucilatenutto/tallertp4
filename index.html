@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voces que Engañan</title>
+  
+  <!-- Tipografías de Google Fonts coincidentes con el diseño original -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Michroma&family=Playfair+Display:ital,wght@0,600;1,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Contenedor principal de la presentación (sin scroll, estilo diapositivas) -->
+  <div id="deck" class="presentation-deck">
+    
+    <!-- ================= DIAPOSITIVA 1: PORTADA ================= -->
+    <section class="slide active" id="slide-1" data-index="1">
+      <div class="slide-canvas">
+        
+        <!-- Franja horizontal superior marrón -->
+        <div class="stripe-top"></div>
+
+        <!-- 1. Teléfono colgando a la izquierda -->
+        <div class="element-tel">
+          <img src="assets/tel.png" alt="Teléfono que cuelga" class="img-tel">
+        </div>
+
+        <!-- Títulos principales -->
+        <div class="element-titles">
+          <h1 class="title-voces">voces que</h1>
+          <h2 class="title-enganan">engañan</h2>
+        </div>
+
+        <!-- 2. Tipito con boina, pipa y traje -->
+        <div class="element-tipito">
+          <img src="assets/tipito.png" alt="Personaje detective" class="img-tipito">
+        </div>
+
+        <!-- Bocadillo de diálogo -->
+        <div class="speech-bubble">
+          <div class="bubble-text">
+            ¿Querés descubrir<br>
+            qué puede pasar<br>
+            con una simple<br>
+            voz?
+          </div>
+          <!-- Cola del bocadillo apuntando al personaje -->
+          <svg class="bubble-tail" viewBox="0 0 30 24" fill="#dfd7c2">
+            <path d="M30,0 C20,10 5,20 0,24 C10,18 20,12 25,6 Z" stroke="#562817" stroke-width="1.8" fill="#dfd7c2"/>
+          </svg>
+        </div>
+
+        <!-- Botón interactivo "Siguiente" -->
+        <button class="btn-siguiente" id="btn-next-cover" aria-label="Siguiente diapositiva">
+          Siguiente
+        </button>
+
+        <!-- 3. Cabina telefónica roja con fondo semicircular marrón -->
+        <div class="element-cabina">
+          <div class="cabina-bg-semicircle"></div>
+          <img src="assets/cabina.png" alt="Cabina telefónica roja" class="img-cabina">
+        </div>
+
+      </div>
+    </section>
+
+
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

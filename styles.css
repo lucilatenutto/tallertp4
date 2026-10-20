@@ -1,0 +1,411 @@
+/* ==========================================================================
+   Voces que Engañan - Estilos de Presentación Interactiva (Diapositivas)
+   Fiel a la composición original (tel, cabina, tipito, texto y botón)
+   ========================================================================== */
+
+:root {
+  --bg-olive: #9b936c;
+  --bg-dark-window: #1b1814;
+  --brown-stripe: #6c361e;
+  --brown-dark: #562817;
+  --brown-deep: #4b2416;
+  --brown-semicircle: #6a341e;
+  --cream-paper: #dfd7c2;
+  --cream-light: #f4eee1;
+  --text-olive-tint: #96866b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Sin scroll para formato diapositivas / kiosco */
+  background-color: var(--bg-dark-window);
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--brown-dark);
+}
+
+/* Contenedor general de diapositivas */
+.presentation-deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Cada diapositiva ocupa todo el viewport y se posiciona absoluta */
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1);
+  transform: translateX(40px) scale(0.99);
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+}
+
+.slide.prev {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-40px) scale(0.99);
+}
+
+/* Lienzo de la diapositiva en proporción 16:9 fija (1024x577) */
+.slide-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 177.78vh; /* Garantiza relación 16:9 ajustada a la pantalla */
+  max-height: 56.25vw;
+  background-color: var(--bg-olive);
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   PORTADA: ELEMENTOS SEGÚN LA FOTO ORIGINAL
+   ========================================================================== */
+
+/* Franja horizontal superior marrón */
+.stripe-top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6.5%;
+  height: 3.8%;
+  background-color: var(--brown-stripe);
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 1. Teléfono colgando a la izquierda */
+.element-tel {
+  position: absolute;
+  left: 4.8%;
+  top: 0;
+  height: 90%;
+  width: 13.5%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.img-tel {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+  filter: drop-shadow(14px 14px 10px rgba(45, 20, 15, 0.48));
+  animation: phoneSwing 8s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+
+@keyframes phoneSwing {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(0.8deg); }
+  100% { transform: rotate(-0.6deg); }
+}
+
+/* Títulos principales */
+.element-titles {
+  position: absolute;
+  left: 19.1%;
+  top: 21%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.title-voces {
+  font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+  font-size: 5.3vmin;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--brown-deep);
+  line-height: 1;
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.22);
+}
+
+.title-enganan {
+  font-family: 'Michroma', 'Audiowide', sans-serif;
+  font-size: 7.4vmin;
+  font-weight: 700;
+  color: var(--text-olive-tint);
+  line-height: 1;
+  margin-top: 1vmin;
+  margin-left: 8vmin;
+  letter-spacing: 0.04em;
+  -webkit-text-stroke: 2px var(--brown-deep);
+  text-shadow: 
+    2px 2px 0 var(--brown-deep),
+    -2px -2px 0 var(--brown-deep),
+    2px -2px 0 var(--brown-deep),
+    -2px 2px 0 var(--brown-deep),
+    3px 4px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* 2. Tipito con boina y pipa */
+.element-tipito {
+  position: absolute;
+  left: 22.5%;
+  bottom: 7.2%;
+  width: 14%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.img-tipito {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(4px 8px 12px rgba(30, 15, 10, 0.35));
+}
+
+/* Bocadillo de diálogo */
+.speech-bubble {
+  position: absolute;
+  left: 36.5%;
+  top: 47.1%;
+  width: 23%;
+  background-color: var(--cream-paper);
+  border: 2.2px solid var(--brown-dark);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.2% 1.6%;
+  z-index: 6;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bubble-text {
+  font-family: 'Michroma', 'Space Grotesk', sans-serif;
+  font-size: 1.3vmin;
+  font-weight: 600;
+  color: var(--brown-dark);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.bubble-tail {
+  position: absolute;
+  left: -18px;
+  bottom: 14px;
+  width: 24px;
+  height: 20px;
+  transform: rotate(5deg);
+}
+
+/* Botón interactivo "Siguiente" */
+.btn-siguiente {
+  position: absolute;
+  left: 43.4%;
+  top: 75.4%;
+  width: 13.0%;
+  height: 4.8%;
+  background-color: var(--cream-paper);
+  border: 2px solid var(--brown-dark);
+  border-radius: 999px;
+  color: var(--brown-dark);
+  font-family: 'Space Grotesk', 'Michroma', sans-serif;
+  font-size: 1.5vmin;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  z-index: 7;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-siguiente:hover {
+  background-color: var(--cream-light);
+  transform: scale(1.04);
+  box-shadow: 0 5px 12px rgba(86, 40, 23, 0.3);
+}
+
+.btn-siguiente:active {
+  transform: scale(0.96);
+}
+
+/* 3. Cabina telefónica roja con fondo semicircular */
+.element-cabina {
+  position: absolute;
+  right: 3%;
+  top: 3.5%;
+  height: 94%;
+  width: 25%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: 4;
+}
+
+.cabina-bg-semicircle {
+  position: absolute;
+  right: -3%;
+  bottom: -3.5%;
+  width: 125%;
+  height: 52%;
+  background-color: var(--brown-semicircle);
+  border-top-left-radius: 100%;
+  z-index: 1;
+}
+
+.img-cabina {
+  position: relative;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(-8px 10px 14px rgba(40, 20, 15, 0.45));
+}
+
+/* ==========================================================================
+   DIAPOSITIVA 2: CONTENIDO INFORMATIVO
+   ========================================================================== */
+
+.slide-canvas-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6% 8% 5% 8%;
+}
+
+.slide-header {
+  position: relative;
+  z-index: 5;
+  margin-top: 2vmin;
+}
+
+.subslide-title {
+  font-family: 'Playfair Display', 'Cinzel', serif;
+  font-size: 4.5vmin;
+  color: var(--brown-deep);
+  font-weight: 700;
+  margin-bottom: 0.8vmin;
+}
+
+.title-line {
+  width: 120px;
+  height: 3px;
+  background-color: var(--brown-stripe);
+}
+
+.slide-body-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3vmin;
+  position: relative;
+  z-index: 5;
+  margin: auto 0;
+}
+
+.info-card {
+  background-color: var(--cream-paper);
+  border: 2px solid var(--brown-dark);
+  border-radius: 16px;
+  padding: 2.5vmin;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  background-color: var(--cream-light);
+}
+
+.card-num {
+  font-family: 'Michroma', sans-serif;
+  font-size: 2vmin;
+  color: var(--brown-stripe);
+  font-weight: 700;
+  margin-bottom: 0.5vmin;
+}
+
+.info-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2vmin;
+  color: var(--brown-deep);
+  margin-bottom: 1vmin;
+}
+
+.info-card p {
+  font-size: 1.5vmin;
+  line-height: 1.45;
+  color: var(--brown-dark);
+}
+
+.slide-footer-nav {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-back {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 1vmin 2.5vmin;
+  font-size: 1.5vmin;
+}
+
+.mini-accent-tel {
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+  width: 8%;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.img-mini-tel {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   FEEDBACK DE SENSOR / TECLADO
+   Efecto de pulso en pantalla cuando el sensor emite una pulsación
+   ========================================================================== */
+
+.sensor-active-feedback {
+  animation: sensorPulse 0.35s ease-out;
+}
+
+@keyframes sensorPulse {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.08); }
+  100% { filter: brightness(1); }
+}
