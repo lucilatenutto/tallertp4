@@ -4,72 +4,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voces que Engañan</title>
-  
-  <!-- Tipografías de Google Fonts coincidentes con el diseño original -->
+  <meta name="description" content="Voces que Engañan: descubrí qué puede pasar con una simple voz.">
+
+  <!-- Tipografías: Playfair Display ("voces que") y Michroma ("engañan", textos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Michroma&family=Playfair+Display:ital,wght@0,600;1,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Contenedor principal de la presentación (sin scroll, estilo diapositivas) -->
-  <div id="deck" class="presentation-deck">
-    
-    <!-- ================= DIAPOSITIVA 1: PORTADA ================= -->
-    <section class="slide active" id="slide-1" data-index="1">
-      <div class="slide-canvas">
-        
-        <!-- Franja horizontal superior marrón -->
-        <div class="stripe-top"></div>
 
-        <!-- 1. Teléfono colgando a la izquierda -->
-        <div class="element-tel">
-          <img src="assets/tel.png" alt="Teléfono que cuelga" class="img-tel">
-        </div>
-
-        <!-- Títulos principales -->
-        <div class="element-titles">
-          <h1 class="title-voces">voces que</h1>
-          <h2 class="title-enganan">engañan</h2>
-        </div>
-
-        <!-- 2. Tipito con boina, pipa y traje -->
-        <div class="element-tipito">
-          <img src="assets/tipito.png" alt="Personaje detective" class="img-tipito">
-        </div>
-
-        <!-- Bocadillo de diálogo -->
-        <div class="speech-bubble">
-          <div class="bubble-text">
-            ¿Querés descubrir<br>
-            qué puede pasar<br>
-            con una simple<br>
-            voz?
-          </div>
-          <!-- Cola del bocadillo apuntando al personaje -->
-          <svg class="bubble-tail" viewBox="0 0 30 24" fill="#dfd7c2">
-            <path d="M30,0 C20,10 5,20 0,24 C10,18 20,12 25,6 Z" stroke="#562817" stroke-width="1.8" fill="#dfd7c2"/>
-          </svg>
-        </div>
-
-        <!-- Botón interactivo "Siguiente" -->
-        <button class="btn-siguiente" id="btn-next-cover" aria-label="Siguiente diapositiva">
-          Siguiente
-        </button>
-
-        <!-- 3. Cabina telefónica roja con fondo semicircular marrón -->
-        <div class="element-cabina">
-          <div class="cabina-bg-semicircle"></div>
-          <img src="assets/cabina.png" alt="Cabina telefónica roja" class="img-cabina">
-        </div>
-
-      </div>
-    </section>
-
-
-
+  <!-- ================= INTRO: ONDA + TIMBRE ================= -->
+  <div id="intro" class="intro" title="Hacé clic para atender">
+    <img src="musica1.png" alt="Onda de sonido: el teléfono está sonando" class="onda">
   </div>
+
+  <!-- ================= PORTADA ================= -->
+  <main id="portada" class="portada" aria-hidden="true">
+    <div class="canvas">
+      <h1 class="titulo">
+        <span class="titulo-voces">voces que</span>
+        <span class="titulo-enganan">engañan</span>
+      </h1>
+
+      <!-- Bocadillo -->
+      <div class="bocadillo">
+        <p>¿Querés descubrir<br>qué puede pasar<br>con una simple<br>voz?</p>
+        <svg class="bocadillo-cola" viewBox="0 0 40 30" aria-hidden="true">
+          <path d="M40 2 C28 10 14 20 0 28 C14 24 30 20 40 14" />
+        </svg>
+      </div>
+
+      <!-- Tipito -->
+      <img src="assets/tipito.png" alt="Personaje detective con pipa" class="tipito">
+
+      <!-- Botón -->
+      <button id="btn-rojo" class="btn-rojo">Botón rojo</button>
+    </div>
+  </main>
+
+  <!-- ================= PANTALLA 2: CÓMO USAR EL TELÉFONO ================= -->
+  <section id="instrucciones" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-instrucciones">
+      <img src="assets/fondo-escritorio.png" alt="" class="fondo-blur">
+      <div class="panel"></div>
+
+      <h2 class="instr-titulo">¿Cómo usar este teléfono?</h2>
+      <p class="instr-texto">
+        Para recorrer esta experiencia, solo necesitas marcar los número del teléfono
+        y el botón ROJO cuando se le indique.
+      </p>
+
+      <button id="btn-rojo-2" class="btn-rojo">Botón rojo</button>
+    </div>
+  </section>
+
+  <!-- ================= PANTALLA 3: TRES MENSAJES ================= -->
+  <section id="menu" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-instrucciones">
+      <img src="assets/fondo-escritorio.png" alt="" class="fondo-blur">
+      <div class="panel"></div>
+      <img src="assets/telefono-rojo.png" alt="Teléfono rojo" class="telefono-rojo">
+
+      <h2 class="menu-titulo">Tres mensajes</h2>
+      <p class="menu-sub">marce los números que se muestran en el teléfono para ir al mensaje.</p>
+
+      <button class="opcion opcion-1" data-opcion="1" aria-label="Mensaje 1: De una grabación a un dato">
+        <span class="opcion-num">1</span>
+        <span class="opcion-texto">De una grabación a un dato</span>
+      </button>
+      <button class="opcion opcion-2" data-opcion="2" aria-label="Mensaje 2: Estafas de voz">
+        <span class="opcion-num">2</span>
+        <span class="opcion-texto">Estafas de voz</span>
+      </button>
+      <button class="opcion opcion-3" data-opcion="3" aria-label="Mensaje 3: Tu identidad en manos de la IA">
+        <span class="opcion-num">3</span>
+        <span class="opcion-texto">Tu identidad en manos de la IA</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= PANTALLA 4: NÚCLEO 1 (DE UNA GRABACIÓN A UN DATO) ================= -->
+  <section id="nucleo-1" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-nucleo">
+      <!-- Títulos -->
+      <h2 class="nucleo-titulo">De una grabación a un dato</h2>
+      <p class="nucleo-sub">¿Qué hago si me piden mis datos personales por teléfono?</p>
+
+      <!-- 1. Teléfono rojo sin fondo (interactivo) -->
+      <button class="elemento-interactivo elem-tel" data-elem="tel" aria-label="Teléfono rojo">
+        <img src="assets/telefono-rojo.png" alt="Teléfono rojo" class="img-tel-nucleo">
+      </button>
+
+      <!-- 2. Libreta con texto (interactiva) -->
+      <button class="elemento-interactivo elem-libreta" data-elem="libreta" aria-label="Libreta de apuntes: Modalidades de engaño más comunes">
+        <img src="assets/libreta.png" alt="Libreta de apuntes" class="img-libreta">
+        <div class="libreta-texto libreta-izq">
+          <span>Modalidades</span>
+          <span>de</span>
+          <span>engaño</span>
+        </div>
+        <div class="libreta-texto libreta-der">
+          <span>más</span>
+          <span>comunes</span>
+        </div>
+      </button>
+
+      <!-- 3. Diario Daily News (interactivo) -->
+      <button class="elemento-interactivo elem-diario" data-elem="diario" aria-label="Diario Daily News">
+        <img src="assets/diario.png" alt="Diario Daily News" class="img-diario">
+      </button>
+
+      <!-- Detective tipito 2 -->
+      <img src="assets/tipito2.png" alt="Personaje detective" class="tipito-2">
+
+      <!-- Botón volver con almohadilla (#) -->
+      <div class="volver-wrap">
+        <button id="btn-volver-menu" class="btn-hash" aria-label="Volver al menú con tecla almohadilla">
+          <span class="hash-simbolo">#</span>
+        </button>
+        <p class="volver-hint">pulsa el botón #<br>para volver</p>
+      </div>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
