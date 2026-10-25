@@ -82,6 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     1: [697, 1209],
     2: [697, 1336],
     3: [697, 1477],
+    4: [770, 1209],
+    5: [770, 1336],
+    6: [770, 1477],
+    7: [852, 1209],
+    8: [852, 1336],
     '#': [941, 1477]
   };
 
@@ -129,16 +134,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const elementosInteractivos = Array.from(document.querySelectorAll('.elemento-interactivo'));
 
-  // Selección de los 3 elementos interactivos en Núcleo 1 (Teléfono, Libreta, Diario)
+  const modalDetalleTel = document.getElementById('modal-detalle-tel');
+  const modalDetalleLibreta = document.getElementById('modal-detalle-libreta');
+  const modalDetalleDiario = document.getElementById('modal-detalle-diario');
+  const modalBuzonVoz = document.getElementById('modal-buzon-voz');
+  const modalAudio1 = document.getElementById('modal-audio-1');
+  const modalAudio2 = document.getElementById('modal-audio-2');
+
+  const btnCerrarDetalle = document.querySelector('.btn-cerrar-detalle');
+  const btnCerrarLibreta = document.querySelector('.btn-cerrar-libreta');
+  const btnCerrarDiario = document.querySelector('.btn-cerrar-diario');
+  const btnCerrarBuzon = document.querySelector('.btn-cerrar-buzon');
+  const btnsCerrarAudio = Array.from(document.querySelectorAll('.btn-cerrar-audio'));
+
+  let modalActivo = null;
+  let timerPaseBuzon = null;
+
+  function abrirModal(modal) {
+    if (!modal) return;
+    if (timerPaseBuzon) {
+      clearTimeout(timerPaseBuzon);
+      timerPaseBuzon = null;
+    }
+
+    if (modalActivo && modalActivo !== modal) {
+      modalActivo.classList.remove('visible');
+      modalActivo.setAttribute('aria-hidden', 'true');
+    }
+    modal.classList.add('visible');
+    modal.setAttribute('aria-hidden', 'false');
+    modalActivo = modal;
+
+    // Si entramos a la libreta, a los 3 segundos pasa automáticamente a Buzón de Voz
+    if (modal === modalDetalleLibreta) {
+      timerPaseBuzon = setTimeout(() => {
+        abrirModal(modalBuzonVoz);
+      }, 3000);
+    }
+  }
+
+  function cerrarModal() {
+    if (!modalActivo) return;
+    if (timerPaseBuzon) {
+      clearTimeout(timerPaseBuzon);
+      timerPaseBuzon = null;
+    }
+
+    tonoTecla('#');
+    const btnCerrar = modalActivo.querySelector('.btn-hash');
+    if (btnCerrar) {
+      btnCerrar.classList.add('presionada');
+      setTimeout(() => btnCerrar.classList.remove('presionada'), 250);
+    }
+
+    // Si estamos reproduciendo audio 1 ó 2, volver al buzón de voz
+    if (modalActivo === modalAudio1 || modalActivo === modalAudio2) {
+      abrirModal(modalBuzonVoz);
+      return;
+    }
+
+    modalActivo.classList.remove('visible');
+    modalActivo.setAttribute('aria-hidden', 'true');
+    modalActivo = null;
+    elementosInteractivos.forEach((el) => {
+      el.classList.remove('seleccionado');
+      el.classList.remove('presionado');
+    });
+    nucleo1.classList.remove('elemento-activo');
+  }
+
+  function reproducirMensajeAudio(numero) {
+    tonoTecla(numero);
+    if (numero === '7' || numero === 1) {
+      abrirModal(modalAudio1);
+    } else if (numero === '8' || numero === 2) {
+      abrirModal(modalAudio2);
+    }
+  }
+
+  // Selección de los 3 elementos interactivos en Núcleo 1 (4: Teléfono, 5: Libreta, 6: Diario)
   function seleccionarElemento(elem) {
     if (pantalla !== 'nucleo-1') return;
     const yaSeleccionado = elem.classList.contains('seleccionado');
 
-    elementosInteractivos.forEach((el) => el.classList.remove('seleccionado'));
+    elementosInteractivos.forEach((el) => {
+      el.classList.remove('seleccionado');
+      el.classList.remove('presionado');
+    });
 
-    if (!yaSeleccionado) {
+    if (yaSeleccionado) {
+      nucleo1.classList.remove('elemento-activo');
+      if (modalActivo) cerrarModal();
+    } else {
       elem.classList.add('seleccionado');
+      elem.classList.add('presionado');
+      setTimeout(() => elem.classList.remove('presionado'), 260);
+      nucleo1.classList.add('elemento-activo');
+
+      const num = elem.dataset.opcion;
+      if (num) tonoTecla(num);
       sonarClicElemento(elem.dataset.elem);
+
+      if (elem.dataset.elem === 'tel') {
+        setTimeout(() => abrirModal(modalDetalleTel), 320);
+      } else if (elem.dataset.elem === 'libreta') {
+        setTimeout(() => abrirModal(modalDetalleLibreta), 320);
+      } else if (elem.dataset.elem === 'diario') {
+        setTimeout(() => abrirModal(modalDetalleDiario), 320);
+      }
     }
   }
 
@@ -186,10 +289,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Volver al menú de mensajes con la tecla #
   function volverAlMenu() {
     if (pantalla !== 'nucleo-1') return;
+    if (modalActivo) {
+      cerrarModal();
+      return;
+    }
+
     tonoTecla('#');
 
-    // Deseleccionar elementos al salir
-    elementosInteractivos.forEach((el) => el.classList.remove('seleccionado'));
+    // Deseleccionar elementos y quitar difuminado activo al salir
+    elementosInteractivos.forEach((el) => {
+      el.classList.remove('seleccionado');
+      el.classList.remove('presionado');
+    });
+    nucleo1.classList.remove('elemento-activo');
 
     if (btnVolverMenu) {
       btnVolverMenu.classList.add('presionada');
@@ -211,6 +323,61 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnVolverMenu) {
     btnVolverMenu.addEventListener('click', volverAlMenu);
   }
+
+  if (btnCerrarDetalle) {
+    btnCerrarDetalle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cerrarModal();
+    });
+  }
+
+  if (btnCerrarLibreta) {
+    btnCerrarLibreta.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cerrarModal();
+    });
+  }
+
+  if (btnCerrarDiario) {
+    btnCerrarDiario.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cerrarModal();
+    });
+  }
+
+  if (btnCerrarBuzon) {
+    btnCerrarBuzon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cerrarModal();
+    });
+  }
+
+  btnsCerrarAudio.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cerrarModal();
+    });
+  });
+
+  // Opciones de Buzón de Voz (clic en 7 u 8)
+  const buzonItems = Array.from(document.querySelectorAll('.buzon-opcion-item, .btn-num-buzon'));
+  buzonItems.forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const audioId = el.dataset.audio;
+      if (audioId === '1') reproducirMensajeAudio('7');
+      else if (audioId === '2') reproducirMensajeAudio('8');
+    });
+  });
+
+  [modalDetalleTel, modalDetalleLibreta, modalDetalleDiario, modalBuzonVoz, modalAudio1, modalAudio2].forEach((modal) => {
+    if (!modal) return;
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        cerrarModal();
+      }
+    });
+  });
 
   opciones.forEach((b) => {
     b.addEventListener('click', () => elegirOpcion(b.dataset.opcion));
@@ -241,7 +408,40 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (pantalla === 'nucleo-1') {
       if (e.key === '#' || e.key === 'Backspace' || e.key === 'Escape') {
         e.preventDefault();
-        volverAlMenu();
+        if (modalActivo) {
+          cerrarModal();
+        } else {
+          volverAlMenu();
+        }
+      } else if (e.key === '7') {
+        e.preventDefault();
+        if (modalActivo === modalBuzonVoz || !modalActivo) {
+          reproducirMensajeAudio('7');
+        }
+      } else if (e.key === '8') {
+        e.preventDefault();
+        if (modalActivo === modalBuzonVoz || !modalActivo) {
+          reproducirMensajeAudio('8');
+        }
+      } else if (['4', '5', '6'].includes(e.key)) {
+        e.preventDefault();
+        if (modalActivo) {
+          const opcionActual = (modalActivo === modalDetalleTel && e.key === '4') ||
+                               (modalActivo === modalDetalleLibreta && e.key === '5') ||
+                               (modalActivo === modalDetalleDiario && e.key === '6');
+          if (opcionActual) {
+            cerrarModal();
+          } else {
+            cerrarModal();
+            setTimeout(() => {
+              const elem = elementosInteractivos.find((el) => el.dataset.opcion === e.key);
+              if (elem) seleccionarElemento(elem);
+            }, 180);
+          }
+        } else {
+          const elem = elementosInteractivos.find((el) => el.dataset.opcion === e.key);
+          if (elem) seleccionarElemento(elem);
+        }
       }
     }
   });
