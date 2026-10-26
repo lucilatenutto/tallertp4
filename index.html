@@ -7,7 +7,6 @@
   <title>Voces que Engañan</title>
   <meta name="description" content="Voces que Engañan: descubrí qué puede pasar con una simple voz.">
 
-  <!-- Tipografías: Playfair Display ("voces que") y Michroma ("engañan", textos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Playfair+Display:wght@500;600&display=swap"
@@ -18,12 +17,12 @@
 
 <body>
 
-  <!-- ================= INTRO: ONDA + TIMBRE ================= -->
+
   <div id="intro" class="intro" title="Hacé clic para atender">
     <img src="musica1.png" alt="Onda de sonido: el teléfono está sonando" class="onda">
   </div>
 
-  <!-- ================= PORTADA ================= -->
+
   <main id="portada" class="portada" aria-hidden="true">
     <div class="canvas">
       <h1 class="titulo">
@@ -31,7 +30,7 @@
         <span class="titulo-enganan">engañan</span>
       </h1>
 
-      <!-- Bocadillo -->
+
       <div class="bocadillo">
         <p>¿Querés descubrir<br>qué puede pasar<br>con una simple<br>voz?</p>
         <svg class="bocadillo-cola" viewBox="0 0 40 30" aria-hidden="true">
@@ -39,15 +38,14 @@
         </svg>
       </div>
 
-      <!-- Tipito -->
       <img src="assets/tipito.png" alt="Personaje detective con pipa" class="tipito">
 
-      <!-- Botón -->
+
       <button id="btn-rojo" class="btn-rojo">Botón rojo</button>
     </div>
   </main>
 
-  <!-- ================== PANTALLA 2: CÓMO USAR EL TELÉFONO ================= -->
+
   <section id="instrucciones" class="pantalla" aria-hidden="true">
     <div class="canvas canvas-instrucciones">
       <img src="assets/fondo-escritorio.png" alt="" class="fondo-blur">
@@ -63,7 +61,7 @@
     </div>
   </section>
 
-  <!-- ================= PANTALLA 3: TRES MENSAJES ================= -->
+
   <section id="menu" class="pantalla" aria-hidden="true">
     <div class="canvas canvas-instrucciones">
       <img src="assets/fondo-escritorio.png" alt="" class="fondo-blur">
@@ -71,43 +69,65 @@
       <img src="assets/telefono-rojo.png" alt="Teléfono rojo" class="telefono-rojo">
 
       <h2 class="menu-titulo">Tres mensajes</h2>
-      <p class="menu-sub">marce los números que se muestran en el teléfono para ir al mensaje.</p>
+      <p class="menu-sub">marquee los números que se muestran en el teléfono para ir al mensaje.</p>
 
       <button class="opcion opcion-1" data-opcion="1" aria-label="Mensaje 1: De una grabación a un dato">
         <span class="opcion-num">1</span>
         <span class="opcion-texto">De una grabación a un dato</span>
+        <span class="opcion-tilde" aria-hidden="true">
+          <svg class="tilde-icono" viewBox="0 0 32 32" fill="none">
+            <circle cx="15.5" cy="16.5" r="11.5" stroke="#f6c77b" stroke-width="2.2" />
+            <path d="M10 16.5 L14.5 21 L24 10" stroke="#f6c77b" stroke-width="2.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
       </button>
       <button class="opcion opcion-2" data-opcion="2" aria-label="Mensaje 2: Estafas de voz">
         <span class="opcion-num">2</span>
         <span class="opcion-texto">Estafas de voz</span>
+        <span class="opcion-tilde" aria-hidden="true">
+          <svg class="tilde-icono" viewBox="0 0 32 32" fill="none">
+            <circle cx="15.5" cy="16.5" r="11.5" stroke="#f6c77b" stroke-width="2.2" />
+            <path d="M10 16.5 L14.5 21 L24 10" stroke="#f6c77b" stroke-width="2.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
       </button>
       <button class="opcion opcion-3" data-opcion="3" aria-label="Mensaje 3: Tu identidad en manos de la IA">
         <span class="opcion-num">3</span>
         <span class="opcion-texto">Tu identidad en manos de la IA</span>
+        <span class="opcion-tilde" aria-hidden="true">
+          <svg class="tilde-icono" viewBox="0 0 32 32" fill="none">
+            <circle cx="15.5" cy="16.5" r="11.5" stroke="#f6c77b" stroke-width="2.2" />
+            <path d="M10 16.5 L14.5 21 L24 10" stroke="#f6c77b" stroke-width="2.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
       </button>
     </div>
   </section>
 
-  <!-- ================= PANTALLA 4: NÚCLEO 1 (DE UNA GRABACIÓN A UN DATO) ================= -->
+
   <section id="nucleo-1" class="pantalla" aria-hidden="true">
     <div class="canvas canvas-nucleo">
-      <!-- Fondo con difuminado y viñeta para resaltar los elementos -->
+
       <div class="fondo-nucleo" aria-hidden="true"></div>
       <div class="nucleo-overlay" aria-hidden="true"></div>
 
-      <!-- Títulos -->
+
       <h2 class="nucleo-titulo">De una grabación a un dato</h2>
       <p class="nucleo-sub">¿Qué hago si me piden mis datos personales por teléfono?</p>
 
-      <!-- 1. Teléfono rojo sin fondo (interactivo) -->
-      <button class="elemento-interactivo elem-tel" data-elem="tel" data-opcion="4" aria-label="Opción 4: Teléfono rojo">
+
+      <button class="elemento-interactivo elem-tel" data-elem="tel" data-opcion="4"
+        aria-label="Opción 4: Teléfono rojo">
         <img src="assets/telefono-rojo.png" alt="Teléfono rojo" class="img-tel-nucleo">
         <div class="badge-numero badge-tel" aria-hidden="true">
           <span class="badge-num-texto">4</span>
         </div>
       </button>
 
-      <!-- 2. Libreta con texto (interactiva) -->
+
       <button class="elemento-interactivo elem-libreta" data-elem="libreta" data-opcion="5"
         aria-label="Opción 5: Libreta de apuntes: Modalidades de engaño más comunes">
         <img src="assets/libreta.png" alt="Libreta de apuntes" class="img-libreta">
@@ -125,22 +145,25 @@
         </div>
       </button>
 
-      <!-- 3. Diario Daily News (interactivo) -->
-      <button class="elemento-interactivo elem-diario" data-elem="diario" data-opcion="6" aria-label="Opción 6: Diario Daily News">
+
+      <button class="elemento-interactivo elem-diario" data-elem="diario" data-opcion="6"
+        aria-label="Opción 6: Diario Daily News">
         <img src="assets/diario.png" alt="Diario Daily News" class="img-diario">
         <div class="badge-numero badge-diario" aria-hidden="true">
           <span class="badge-num-texto">6</span>
         </div>
       </button>
 
-      <!-- Detective tipito 2 -->
+
       <img src="assets/tipito2.png" alt="Personaje detective" class="tipito-2">
 
-      <!-- ================= MODAL DETALLE: TELÉFONO / VISHING ================= -->
+
       <div id="modal-detalle-tel" class="modal-detalle" aria-hidden="true">
         <div class="tarjeta-detalle">
           <p class="detalle-texto">
-            El <strong class="texto-oro">vishing</strong> es una <strong class="texto-oro">estafa telefónica</strong> que utiliza falsas emergencias y <strong class="texto-oro">voces clonadas con IA</strong> para engañar a las víctimas y robar sus datos o dinero.
+            El <strong class="texto-oro">vishing</strong> es una <strong class="texto-oro">estafa telefónica</strong>
+            que utiliza falsas emergencias y <strong class="texto-oro">voces clonadas con IA</strong> para engañar a las
+            víctimas y robar sus datos o dinero.
           </p>
 
           <div class="detalle-imagenes">
@@ -164,7 +187,7 @@
         </div>
       </div>
 
-      <!-- ================= MODAL DETALLE: LIBRETA / MODALIDADES ================= -->
+
       <div id="modal-detalle-libreta" class="modal-detalle" aria-hidden="true">
         <div class="tarjeta-detalle tarjeta-libreta">
           <div class="detalle-top-libreta">
@@ -215,7 +238,7 @@
         </div>
       </div>
 
-      <!-- ================= MODAL: BUZÓN DE VOZ ================= -->
+
       <div id="modal-buzon-voz" class="modal-detalle" aria-hidden="true">
         <div class="tarjeta-detalle tarjeta-buzon">
           <h2 class="buzon-titulo">BUZÓN DE VOZ</h2>
@@ -224,7 +247,7 @@
           <h3 class="buzon-subtitulo">Tenes dos mensajes nuevos</h3>
 
           <div class="buzon-opciones">
-            <!-- Opción 7: Mensaje 01 -->
+
             <div class="buzon-opcion-item buzon-item-1" data-audio="1">
               <div class="buzon-mensaje-tag">
                 <span class="punto-oro">●</span>
@@ -239,7 +262,7 @@
               </div>
             </div>
 
-            <!-- Opción 8: Mensaje 02 -->
+
             <div class="buzon-opcion-item buzon-item-2" data-audio="2">
               <div class="buzon-mensaje-tag">
                 <span class="punto-oro">●</span>
@@ -267,7 +290,7 @@
         </div>
       </div>
 
-      <!-- ================= MODAL: REPRODUCCIÓN AUDIO 01 ================= -->
+
       <div id="modal-audio-1" class="modal-detalle" aria-hidden="true">
         <div class="tarjeta-detalle tarjeta-audio">
           <div class="audio-header">
@@ -295,9 +318,12 @@
             <p class="volver-hint">pulsa el botón #<br>para volver al buzón</p>
           </div>
         </div>
+
+
+        <img src="assets/tipito3.png" alt="Personaje detective escuchando" class="tipito-3">
       </div>
 
-      <!-- ================= MODAL: REPRODUCCIÓN AUDIO 02 ================= -->
+
       <div id="modal-audio-2" class="modal-detalle" aria-hidden="true">
         <div class="tarjeta-detalle tarjeta-audio">
           <div class="audio-header">
@@ -325,19 +351,24 @@
             <p class="volver-hint">pulsa el botón #<br>para volver al buzón</p>
           </div>
         </div>
+
+
+        <img src="assets/tipito3.png" alt="Personaje detective escuchando" class="tipito-3">
       </div>
 
-      <!-- ================= MODAL DETALLE: DIARIO / IDENTIDAD DIGITAL ================= -->
+
       <div id="modal-detalle-diario" class="modal-detalle" aria-hidden="true">
         <div class="tarjeta-detalle tarjeta-diario">
-          <!-- Cabecera: Texto estadístico a la izquierda y diario a la derecha -->
+
           <div class="detalle-top-diario">
             <div class="detalle-texto-diario">
               <p class="diario-parrafo">
-                En 2023, CABA registró más de <strong class="texto-oro">1.600</strong> <strong class="texto-oro">denuncias por delitos contra la identidad digital</strong>.
+                En 2023, CABA registró más de <strong class="texto-oro">1.600</strong> <strong
+                  class="texto-oro">denuncias por delitos contra la identidad digital</strong>.
               </p>
               <p class="diario-parrafo">
-                <strong class="texto-oro">443</strong> fueron por <strong class="texto-oro">suplantación de identidad mediante perfiles falsos</strong>.
+                <strong class="texto-oro">443</strong> fueron por <strong class="texto-oro">suplantación de identidad
+                  mediante perfiles falsos</strong>.
               </p>
             </div>
 
@@ -346,25 +377,27 @@
             </div>
           </div>
 
-          <!-- Centro: Imagen identidad digital a la izquierda e infografía a la derecha -->
+
           <div class="detalle-contenido-diario">
             <div class="detalle-img-wrap diario-img-wrap">
               <img src="identidad digital.png" alt="Identidad digital y ondas de voz" class="detalle-img">
             </div>
 
-            <!-- Infografía gráfica de denuncias -->
+
             <div class="grafico-infografia">
               <h4 class="grafico-titulo">Denuncias por delitos contra la<br>identidad digital - CABA, 2023</h4>
 
               <div class="grafico-cuerpo">
-                <!-- Eje Y -->
+
                 <div class="eje-y-wrap">
                   <span class="eje-y-label">numero de denuncias</span>
                   <div class="eje-y-escala">
-                    <div class="escala-fila"><span class="escala-num">1600</span><span class="escala-tick">—</span></div>
+                    <div class="escala-fila"><span class="escala-num">1600</span><span class="escala-tick">—</span>
+                    </div>
                     <div class="escala-subtick">-</div>
                     <div class="escala-subtick">-</div>
-                    <div class="escala-fila"><span class="escala-num">1000</span><span class="escala-tick">—</span></div>
+                    <div class="escala-fila"><span class="escala-num">1000</span><span class="escala-tick">—</span>
+                    </div>
                     <div class="escala-subtick">-</div>
                     <div class="escala-subtick">-</div>
                     <div class="escala-fila"><span class="escala-num">400</span><span class="escala-tick">—</span></div>
@@ -373,46 +406,74 @@
                   </div>
                 </div>
 
-                <!-- Área de barras -->
+
                 <div class="grafico-barras-area">
-                  <!-- Badge flotante: 1 denuncia cada 5 hs -->
+
                   <div class="badge-frecuencia">
                     <span>1 Denuncia cada 5 hs</span>
                   </div>
 
                   <div class="barras-contenedor">
-                    <!-- Barra 1: Suplantación (443) -->
+
                     <div class="columna-grafico col-443">
                       <span class="barra-valor valor-oro">443 denuncias</span>
                       <div class="barra-caja barra-oro">
                         <svg class="ico-svg-movil" viewBox="0 0 36 54" fill="none">
-                          <rect x="4" y="2" width="28" height="50" rx="5" fill="#2d4a5b" stroke="#ffffff" stroke-width="1.8"/>
-                          <circle cx="18" cy="18" r="6" fill="#d9e6f2"/>
-                          <path d="M10 36 C10 28 26 28 26 36" fill="#d9e6f2"/>
-                          <circle cx="26" cy="14" r="5" fill="#38c172"/>
-                          <path d="M23.5 14 L25.5 16 L29 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+                          <rect x="4" y="2" width="28" height="50" rx="5" fill="#2d4a5b" stroke="#ffffff"
+                            stroke-width="1.8" />
+                          <circle cx="18" cy="18" r="6" fill="#d9e6f2" />
+                          <path d="M10 36 C10 28 26 28 26 36" fill="#d9e6f2" />
+                          <circle cx="26" cy="14" r="5" fill="#38c172" />
+                          <path d="M23.5 14 L25.5 16 L29 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" />
                         </svg>
                       </div>
                       <span class="barra-etiqueta">Suplantación digital de<br>identidad</span>
                     </div>
 
-                    <!-- Barra 2: Otros delitos (1600) -->
+
                     <div class="columna-grafico col-1600">
                       <span class="barra-valor valor-rojo">1.600 denuncias</span>
                       <div class="barra-caja barra-roja">
                         <div class="grid-delitos-iconos">
-                          <!-- Candado -->
-                          <svg viewBox="0 0 24 24" class="ico-delito"><path d="M12 2a4 4 0 0 0-4 4v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V6a4 4 0 0 0-4-4zm-2 6V6a2 2 0 1 1 4 0v2h-4z" fill="#48bb78"/></svg>
-                          <!-- Usuario clave -->
-                          <svg viewBox="0 0 24 24" class="ico-delito"><circle cx="10" cy="8" r="4" fill="#63b3ed"/><path d="M4 18c0-3 3-5 6-5s6 2 6 5" fill="#63b3ed"/><circle cx="18" cy="14" r="2.5" fill="#ecc94b"/><path d="M19 16.5l3 3" stroke="#ecc94b" stroke-width="2"/></svg>
-                          <!-- Phishing -->
-                          <svg viewBox="0 0 24 24" class="ico-delito"><rect x="3" y="5" width="18" height="13" rx="2" fill="#e2e8f0"/><path d="M3 6l9 7 9-7" stroke="#4a5568" stroke-width="1.5"/><path d="M12 11c0 3 2 4 4 2" stroke="#e53e3e" stroke-width="1.8" fill="none"/></svg>
-                          <!-- Perfil bloqueado -->
-                          <svg viewBox="0 0 24 24" class="ico-delito"><rect x="5" y="3" width="14" height="18" rx="2" fill="#cbd5e0"/><circle cx="12" cy="10" r="3" fill="#718096"/><circle cx="12" cy="12" r="9" stroke="#e53e3e" stroke-width="2" fill="none"/><line x1="5.6" y1="5.6" x2="18.4" y2="18.4" stroke="#e53e3e" stroke-width="2"/></svg>
-                          <!-- Laptop bloqueada -->
-                          <svg viewBox="0 0 24 24" class="ico-delito"><rect x="4" y="6" width="16" height="10" rx="1" fill="#4a5568"/><rect x="2" y="16" width="20" height="2" fill="#718096"/><circle cx="12" cy="11" r="7" stroke="#e53e3e" stroke-width="1.8" fill="none"/><line x1="7" y1="6" x2="17" y2="16" stroke="#e53e3e" stroke-width="1.8"/></svg>
-                          <!-- Tarjeta y dinero -->
-                          <svg viewBox="0 0 24 24" class="ico-delito"><rect x="2" y="5" width="14" height="9" rx="1.5" fill="#dd6b20"/><rect x="8" y="10" width="14" height="9" rx="1.5" fill="#38a169"/><circle cx="15" cy="14.5" r="2" fill="#fff" opacity="0.6"/></svg>
+
+                          <svg viewBox="0 0 24 24" class="ico-delito">
+                            <path
+                              d="M12 2a4 4 0 0 0-4 4v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V6a4 4 0 0 0-4-4zm-2 6V6a2 2 0 1 1 4 0v2h-4z"
+                              fill="#48bb78" />
+                          </svg>
+
+                          <svg viewBox="0 0 24 24" class="ico-delito">
+                            <circle cx="10" cy="8" r="4" fill="#63b3ed" />
+                            <path d="M4 18c0-3 3-5 6-5s6 2 6 5" fill="#63b3ed" />
+                            <circle cx="18" cy="14" r="2.5" fill="#ecc94b" />
+                            <path d="M19 16.5l3 3" stroke="#ecc94b" stroke-width="2" />
+                          </svg>
+
+                          <svg viewBox="0 0 24 24" class="ico-delito">
+                            <rect x="3" y="5" width="18" height="13" rx="2" fill="#e2e8f0" />
+                            <path d="M3 6l9 7 9-7" stroke="#4a5568" stroke-width="1.5" />
+                            <path d="M12 11c0 3 2 4 4 2" stroke="#e53e3e" stroke-width="1.8" fill="none" />
+                          </svg>
+
+                          <svg viewBox="0 0 24 24" class="ico-delito">
+                            <rect x="5" y="3" width="14" height="18" rx="2" fill="#cbd5e0" />
+                            <circle cx="12" cy="10" r="3" fill="#718096" />
+                            <circle cx="12" cy="12" r="9" stroke="#e53e3e" stroke-width="2" fill="none" />
+                            <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" stroke="#e53e3e" stroke-width="2" />
+                          </svg>
+
+                          <svg viewBox="0 0 24 24" class="ico-delito">
+                            <rect x="4" y="6" width="16" height="10" rx="1" fill="#4a5568" />
+                            <rect x="2" y="16" width="20" height="2" fill="#718096" />
+                            <circle cx="12" cy="11" r="7" stroke="#e53e3e" stroke-width="1.8" fill="none" />
+                            <line x1="7" y1="6" x2="17" y2="16" stroke="#e53e3e" stroke-width="1.8" />
+                          </svg>
+
+                          <svg viewBox="0 0 24 24" class="ico-delito">
+                            <rect x="2" y="5" width="14" height="9" rx="1.5" fill="#dd6b20" />
+                            <rect x="8" y="10" width="14" height="9" rx="1.5" fill="#38a169" />
+                            <circle cx="15" cy="14.5" r="2" fill="#fff" opacity="0.6" />
+                          </svg>
                         </div>
                       </div>
                       <span class="barra-etiqueta">Otros delitos contra la<br>identidad digital</span>
@@ -424,7 +485,7 @@
             </div>
           </div>
 
-          <!-- Pie del modal -->
+
           <div class="detalle-footer">
             <div class="volver-wrap detalle-volver">
               <button class="btn-hash btn-cerrar-diario" aria-label="Volver con tecla almohadilla">
@@ -437,9 +498,412 @@
         </div>
       </div>
 
-      <!-- Botón volver con almohadilla (#) -->
+
       <div class="volver-wrap">
         <button id="btn-volver-menu" class="btn-hash" aria-label="Volver al menú con tecla almohadilla">
+          <span class="hash-simbolo">#</span>
+        </button>
+        <p class="volver-hint">pulsa el botón #<br>para volver</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="nucleo-2" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-nucleo">
+      <div class="fondo-nucleo" aria-hidden="true"></div>
+      <div class="nucleo-overlay" aria-hidden="true"></div>
+
+      <h2 class="nucleo-titulo">Estafas de voz</h2>
+      <p class="nucleo-sub">¿Qué hago si me piden mis datos personales por teléfono?</p>
+
+      <button class="elemento-interactivo elem-tel" data-elem="tel2" data-opcion="4"
+        aria-label="Opción 4: Teléfono rojo">
+        <img src="assets/telefono-rojo.png" alt="Teléfono rojo" class="img-tel-nucleo">
+        <div class="badge-numero badge-tel" aria-hidden="true">
+          <span class="badge-num-texto">4</span>
+        </div>
+      </button>
+
+
+      <button class="elemento-interactivo elem-maquina" data-elem="maquina" data-opcion="5"
+        aria-label="Opción 5: Máquina de escribir">
+        <img src="assets/maquina.png" alt="Máquina de escribir" class="img-maquina">
+        <div class="badge-numero badge-maquina" aria-hidden="true">
+          <span class="badge-num-texto">5</span>
+        </div>
+      </button>
+
+
+      <button class="elemento-interactivo elem-diario" data-elem="diario2" data-opcion="6"
+        aria-label="Opción 6: Diario Daily News">
+        <img src="assets/diario.png" alt="Diario Daily News" class="img-diario">
+        <div class="badge-numero badge-diario" aria-hidden="true">
+          <span class="badge-num-texto">6</span>
+        </div>
+      </button>
+
+
+      <img src="assets/tipito4.png" alt="Personaje detective leyendo el diario" class="tipito-4">
+
+
+      <div id="modal-detalle-tel2" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-clonacion">
+          <p class="detalle-texto">
+            Un <strong class="texto-oro">estafador</strong> te llama e <strong class="texto-oro">inventa una emergencia
+              familiar</strong> para generar preocupación y <strong class="texto-oro">obtener tus datos personales y
+              financieros</strong>. Con IA, también puede clonar voces para hacer más creíble el engaño.
+          </p>
+
+          <div class="detalle-clonacion">
+            <div class="clonacion-img-wrap">
+              <img src="assets/clonacion-de-voces.png" alt="Llamada de número sospechoso con voz clonada"
+                class="clonacion-img">
+            </div>
+            <div class="clonacion-dialogo">
+              <p>- Hola, te llamo de parte de tu abuela.</p>
+              <p>- ¿Quién? ¿María?</p>
+            </div>
+          </div>
+
+          <div class="detalle-footer">
+            <div class="volver-wrap detalle-volver">
+              <button class="btn-hash btn-cerrar-tel2" aria-label="Volver con tecla almohadilla">
+                <span class="hash-simbolo">#</span>
+              </button>
+              <p class="volver-hint">pulsa el botón #<br>para volver</p>
+            </div>
+            <p class="detalle-fuente">Fuente: Portal oficial del Estado Argentino</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="modal-buzon-voz-2" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-buzon">
+          <h2 class="buzon-titulo">BUZÓN DE VOZ</h2>
+          <div class="separador-guiones"></div>
+
+          <h3 class="buzon-subtitulo">Tenes dos mensajes nuevos</h3>
+
+          <div class="buzon-opciones">
+
+            <div class="buzon-opcion-item buzon-item-1" data-audio="1">
+              <div class="buzon-mensaje-tag">
+                <span class="punto-oro">●</span>
+                <span class="mensaje-nombre">MENSAJE 01</span>
+              </div>
+              <div class="buzon-instruccion">
+                <span>Marcá</span>
+                <button class="btn-num-buzon btn-buzon-7" data-audio="1" aria-label="Mensaje 1: marcar tecla 7">
+                  <span class="num-buzon-texto">7</span>
+                </button>
+                <span>para escuchar el primer mensaje</span>
+              </div>
+            </div>
+
+
+            <div class="buzon-opcion-item buzon-item-2" data-audio="2">
+              <div class="buzon-mensaje-tag">
+                <span class="punto-oro">●</span>
+                <span class="mensaje-nombre">MENSAJE 02</span>
+              </div>
+              <div class="buzon-instruccion">
+                <span>Marcá</span>
+                <button class="btn-num-buzon btn-buzon-8" data-audio="2" aria-label="Mensaje 2: marcar tecla 8">
+                  <span class="num-buzon-texto">8</span>
+                </button>
+                <span>para escuchar el segundo mensaje</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="separador-guiones"></div>
+          <p class="buzon-pie-hint">Seleccioná un número en el telefono para oírlo</p>
+
+          <div class="volver-wrap buzon-volver">
+            <button class="btn-hash btn-cerrar-buzon" aria-label="Volver con tecla almohadilla">
+              <span class="hash-simbolo">#</span>
+            </button>
+            <p class="volver-hint">pulsa el botón #<br>para volver</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="modal-audio-1-b" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-audio">
+          <div class="audio-header">
+            <span class="punto-oro anim-pulso">●</span>
+            <h2 class="audio-titulo">MENSAJE 01</h2>
+          </div>
+          <p class="audio-estado">Reproduciendo mensaje de voz...</p>
+
+          <div class="audio-visual-wrap">
+            <img src="musica2.png" alt="Onda sonora mensaje 1" class="audio-onda-img anim-onda">
+          </div>
+
+          <div class="audio-player-bar">
+            <span class="audio-tiempo audio-actual">0:04</span>
+            <div class="audio-track">
+              <div class="audio-progreso progreso-1"></div>
+            </div>
+            <span class="audio-tiempo audio-total">0:18</span>
+          </div>
+
+          <div class="volver-wrap audio-volver">
+            <button class="btn-hash btn-cerrar-audio" aria-label="Volver al buzón con tecla almohadilla">
+              <span class="hash-simbolo">#</span>
+            </button>
+            <p class="volver-hint">pulsa el botón #<br>para volver al buzón</p>
+          </div>
+        </div>
+
+
+        <img src="assets/tipito3.png" alt="Personaje detective escuchando" class="tipito-3">
+      </div>
+
+
+      <div id="modal-audio-2-b" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-audio">
+          <div class="audio-header">
+            <span class="punto-oro anim-pulso">●</span>
+            <h2 class="audio-titulo">MENSAJE 02</h2>
+          </div>
+          <p class="audio-estado">Reproduciendo mensaje de voz...</p>
+
+          <div class="audio-visual-wrap">
+            <img src="musica3.png" alt="Onda sonora mensaje 2" class="audio-onda-img anim-onda">
+          </div>
+
+          <div class="audio-player-bar">
+            <span class="audio-tiempo audio-actual">0:07</span>
+            <div class="audio-track">
+              <div class="audio-progreso progreso-2"></div>
+            </div>
+            <span class="audio-tiempo audio-total">0:24</span>
+          </div>
+
+          <div class="volver-wrap audio-volver">
+            <button class="btn-hash btn-cerrar-audio" aria-label="Volver al buzón con tecla almohadilla">
+              <span class="hash-simbolo">#</span>
+            </button>
+            <p class="volver-hint">pulsa el botón #<br>para volver al buzón</p>
+          </div>
+        </div>
+
+
+        <img src="assets/tipito3.png" alt="Personaje detective escuchando" class="tipito-3">
+      </div>
+
+
+      <div id="modal-detalle-maquina" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-maquina">
+          <img src="assets/maquina.png" alt="Máquina de escribir" class="deco-maquina">
+
+          <p class="detalle-texto maquina-texto">
+            Una <strong class="texto-oro">investigación</strong> de la Fiscalía N.º 1 de Quilmes permitió desarticular
+            una <strong class="texto-oro">estafa millonaria a través de WhatsApp</strong>, en la que se utilizaron
+            <strong class="texto-oro">audios generados</strong> con inteligencia artificial.
+          </p>
+
+          <div class="maquina-imagen-wrap">
+            <img src="whatsApp.png" alt="Estafa a través de WhatsApp" class="maquina-imagen">
+          </div>
+
+          <div class="detalle-footer">
+            <div class="volver-wrap detalle-volver">
+              <button class="btn-hash btn-cerrar-maquina" aria-label="Volver con tecla almohadilla">
+                <span class="hash-simbolo">#</span>
+              </button>
+              <p class="volver-hint">pulsa el botón #<br>para volver</p>
+            </div>
+            <p class="detalle-fuente">Fuente: Noticia de El Dia</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="modal-detalle-diario2" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-diario2">
+          <img src="assets/diario.png" alt="Diario Daily News" class="deco-diario2">
+
+          <p class="detalle-texto diario2-texto">
+            La <strong class="texto-oro">clonación de voz con IA</strong> permite imitar la voz de una persona y generar
+            <strong class="texto-oro">audios falsos muy realistas</strong>. Para realizar estas estafas, los
+            delincuentes obtienen nombres y teléfonos de redes sociales, bases de datos y formularios.
+          </p>
+
+          <div class="diario2-imagen-wrap">
+            <span class="diario2-play" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="13.5" stroke="#1a120c" stroke-width="2.4" />
+                <path d="M13 10.5 L22 16 L13 21.5 Z" fill="#1a120c" />
+              </svg>
+            </span>
+            <img src="clonacion de voz.png" alt="Clonación de voz con IA" class="diario2-imagen">
+          </div>
+
+          <div class="detalle-footer">
+            <div class="volver-wrap detalle-volver">
+              <button class="btn-hash btn-cerrar-diario2" aria-label="Volver con tecla almohadilla">
+                <span class="hash-simbolo">#</span>
+              </button>
+              <p class="volver-hint">pulsa el botón #<br>para volver</p>
+            </div>
+            <p class="detalle-fuente">Fuente: Noticia de El Dia</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="volver-wrap">
+        <button id="btn-volver-menu-2" class="btn-hash" aria-label="Volver al menú con tecla almohadilla">
+          <span class="hash-simbolo">#</span>
+        </button>
+        <p class="volver-hint">pulsa el botón #<br>para volver</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="nucleo-3" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-nucleo">
+      <div class="fondo-nucleo" aria-hidden="true"></div>
+      <div class="nucleo-overlay" aria-hidden="true"></div>
+
+      <h2 class="nucleo-titulo">Tu identidad en manos de la IA</h2>
+      <p class="nucleo-sub">¿podemos decidir cómo y para qué se utiliza?</p>
+
+
+      <button class="elemento-interactivo elem-libreta3" data-elem="libreta3" data-opcion="4"
+        aria-label="Opción 4: Libreta Identidad Digital">
+        <img src="assets/libreta.png" alt="Libreta de apuntes" class="img-libreta">
+        <div class="libreta-texto libreta-izq">
+          <span>Identidad</span>
+        </div>
+        <div class="libreta-texto libreta-der">
+          <span>Digital</span>
+        </div>
+        <div class="badge-numero badge-libreta3" aria-hidden="true">
+          <span class="badge-num-texto">4</span>
+        </div>
+      </button>
+
+
+      <button class="elemento-interactivo elem-carpeta" data-elem="carpeta" data-opcion="5"
+        aria-label="Opción 5: Carpeta">
+        <img src="assets/carpeta.png" alt="Carpeta de documentos" class="img-carpeta">
+        <div class="badge-numero badge-carpeta" aria-hidden="true">
+          <span class="badge-num-texto">5</span>
+        </div>
+      </button>
+
+
+      <button class="elemento-interactivo elem-diario3" data-elem="diario3" data-opcion="6"
+        aria-label="Opción 6: Diario Daily News">
+        <img src="assets/diario.png" alt="Diario Daily News" class="img-diario">
+        <div class="badge-numero badge-diario3" aria-hidden="true">
+          <span class="badge-num-texto">6</span>
+        </div>
+      </button>
+
+
+      <img src="assets/tipito5.png" alt="Personaje detective apoyado" class="tipito-5">
+
+
+      <div id="modal-detalle-libreta3" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-n3">
+          <div class="deco-libreta3" aria-hidden="true">
+            <img src="assets/libreta.png" alt="" class="img-libreta-modal">
+            <div class="libreta-texto-modal libreta-izq-modal"><span>Identidad</span></div>
+            <div class="libreta-texto-modal libreta-der-modal"><span>Digital</span></div>
+          </div>
+
+          <p class="detalle-texto n3-texto n3-texto-libreta">
+            La <strong class="texto-oro">Ley 25.326</strong> de Protección de Datos Personales <strong
+              class="texto-oro">protege la información que permite identificarte</strong> frente a usos no autorizados.
+            Esto incluye tu imagen y los datos biométricos, como los rasgos de tu voz, que pueden utilizarse para
+            identificarte.
+          </p>
+
+          <div class="n3-imagenes n3-imagenes-libreta">
+            <img src="Iconos de IA.png" alt="Iconos de datos biométricos e inteligencia artificial"
+              class="n3-iconos-ia">
+          </div>
+
+          <div class="detalle-footer">
+            <div class="volver-wrap detalle-volver">
+              <button class="btn-hash btn-cerrar-libreta3" aria-label="Volver con tecla almohadilla">
+                <span class="hash-simbolo">#</span>
+              </button>
+              <p class="volver-hint">pulsa el botón #<br>para volver</p>
+            </div>
+            <p class="detalle-fuente">Fuente: Portal oficial del Estado Argentino</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="modal-detalle-carpeta" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-n3">
+          <img src="assets/carpeta.png" alt="Carpeta de documentos" class="deco-carpeta">
+
+          <p class="detalle-texto n3-texto n3-texto-carpeta">
+            El periodista <strong class="texto-oro">Alejandro Fantino denunció</strong> en 2025 un <strong
+              class="texto-oro">video creado con IA que imitaba su imagen y voz</strong> para promocionar falsas
+            inversiones en redes sociales. Tras advertir sobre la estafa, presentó una <strong
+              class="texto-oro">denuncia legal</strong> en la Ciudad de Buenos Aires.
+          </p>
+
+          <div class="n3-imagenes n3-imagenes-carpeta">
+            <img src="fantino.png" alt="Alejandro Fantino" class="n3-fantino">
+            <img src="fantino twiter.png" alt="Publicación de Alejandro Fantino en X" class="n3-twitter">
+          </div>
+
+          <div class="detalle-footer">
+            <div class="volver-wrap detalle-volver">
+              <button class="btn-hash btn-cerrar-carpeta" aria-label="Volver con tecla almohadilla">
+                <span class="hash-simbolo">#</span>
+              </button>
+              <p class="volver-hint">pulsa el botón #<br>para volver</p>
+            </div>
+            <p class="detalle-fuente">Fuente: Noticia de La Nacion</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="modal-detalle-diario3" class="modal-detalle" aria-hidden="true">
+        <div class="tarjeta-detalle tarjeta-n3">
+          <img src="assets/diario.png" alt="Diario Daily News" class="deco-diario3">
+
+          <p class="detalle-texto n3-texto n3-texto-diario">
+            La <strong class="texto-oro">identidad digital</strong> se construye con la <strong
+              class="texto-oro">información</strong> que compartimos <strong class="texto-oro">en internet</strong>:
+            perfiles, comentarios, fotos, videos, contactos y mensajes en redes sociales y aplicaciones.
+          </p>
+
+          <div class="n3-imagenes n3-imagenes-diario">
+            <img src="perfil.png" alt="Perfil de red social" class="n3-perfil">
+            <img src="identidad.digital.png" alt="Identidad digital y huella dactilar" class="n3-identidad">
+          </div>
+
+          <div class="detalle-footer">
+            <div class="volver-wrap detalle-volver">
+              <button class="btn-hash btn-cerrar-diario3" aria-label="Volver con tecla almohadilla">
+                <span class="hash-simbolo">#</span>
+              </button>
+              <p class="volver-hint">pulsa el botón #<br>para volver</p>
+            </div>
+            <p class="detalle-fuente">Fuente: Portal oficial del Estado Argentino</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="volver-wrap">
+        <button id="btn-volver-menu-3" class="btn-hash" aria-label="Volver al menú con tecla almohadilla">
           <span class="hash-simbolo">#</span>
         </button>
         <p class="volver-hint">pulsa el botón #<br>para volver</p>

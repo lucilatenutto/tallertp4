@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Voces que Engañan - Estilos
-   ========================================================================== */
-
 :root {
   --beige: #e4d3ae;
   --crema: #ecdcb8;
@@ -16,16 +12,15 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: #0d0806;
 }
 
-/* ==========================================================================
-   INTRO: ONDA + TIMBRE
-   ========================================================================== */
+
 
 .intro {
   position: fixed;
@@ -47,7 +42,7 @@ html, body {
 .onda {
   width: 42vmin;
   height: auto;
-  mix-blend-mode: multiply; /* elimina el fondo blanco del PNG sobre el beige */
+  mix-blend-mode: multiply;
   opacity: 0;
   animation:
     aparecer 1s ease forwards,
@@ -55,24 +50,56 @@ html, body {
 }
 
 @keyframes aparecer {
-  from { opacity: 0; transform: scale(0.85); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes sonar {
-  0%, 40%, 100% { opacity: 1; transform: scaleY(1); }
-  5%  { transform: scaleY(1.25); }
-  10% { transform: scaleY(0.8); }
-  15% { transform: scaleY(1.2); }
-  20% { transform: scaleY(0.85); }
-  25% { transform: scaleY(1.15); }
-  30% { transform: scaleY(0.9); }
-  35% { transform: scaleY(1.05); }
+
+  0%,
+  40%,
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  5% {
+    transform: scaleY(1.25);
+  }
+
+  10% {
+    transform: scaleY(0.8);
+  }
+
+  15% {
+    transform: scaleY(1.2);
+  }
+
+  20% {
+    transform: scaleY(0.85);
+  }
+
+  25% {
+    transform: scaleY(1.15);
+  }
+
+  30% {
+    transform: scaleY(0.9);
+  }
+
+  35% {
+    transform: scaleY(1.05);
+  }
 }
 
-/* ==========================================================================
-   PORTADA
-   ========================================================================== */
+
 
 .portada {
   position: fixed;
@@ -82,7 +109,7 @@ html, body {
   justify-content: center;
 }
 
-/* Lienzo 16:9 que se adapta a la pantalla */
+
 .canvas {
   position: relative;
   width: min(100vw, 177.78vh);
@@ -92,7 +119,6 @@ html, body {
   background: url('assets/fondo-escritorio.png') 95% center / cover no-repeat;
 }
 
-/* --- Títulos --- */
 .titulo {
   font-weight: normal;
 }
@@ -123,7 +149,6 @@ html, body {
   letter-spacing: 0.02em;
 }
 
-/* --- Bocadillo --- */
 .bocadillo {
   position: absolute;
   left: 48.3%;
@@ -163,7 +188,6 @@ html, body {
   stroke-linejoin: round;
 }
 
-/* --- Tipito --- */
 .tipito {
   position: absolute;
   left: 79.5%;
@@ -173,7 +197,6 @@ html, body {
   filter: drop-shadow(0 1.5cqh 1.5cqh rgba(0, 0, 0, 0.5));
 }
 
-/* --- Botón rojo --- */
 .btn-rojo {
   position: absolute;
   left: 38.1%;
@@ -201,9 +224,6 @@ html, body {
   transform: scale(0.96);
 }
 
-/* ==========================================================================
-   ENTRADA DE LA PORTADA (al atender)
-   ========================================================================== */
 
 .portada .titulo-voces,
 .portada .titulo-enganan,
@@ -219,13 +239,26 @@ html, body {
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-.portada.visible .titulo-voces  { animation: entrarArriba 0.9s ease 0.4s forwards; }
-.portada.visible .titulo-enganan { animation: entrarArriba 0.9s ease 0.7s forwards; }
-.portada.visible .tipito        { animation: entrarDerecha 0.9s ease 1.1s forwards; }
-.portada.visible .bocadillo     { animation: pop 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) 1.7s forwards; }
-.portada.visible .btn-rojo      { animation: entrarAbajo 0.8s ease 2.2s forwards; }
+.portada.visible .titulo-voces {
+  animation: entrarArriba 0.9s ease 0.4s forwards;
+}
 
-/* Mientras suena el teléfono, el botón late invitando a atender */
+.portada.visible .titulo-enganan {
+  animation: entrarArriba 0.9s ease 0.7s forwards;
+}
+
+.portada.visible .tipito {
+  animation: entrarDerecha 0.9s ease 1.1s forwards;
+}
+
+.portada.visible .bocadillo {
+  animation: pop 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) 1.7s forwards;
+}
+
+.portada.visible .btn-rojo {
+  animation: entrarAbajo 0.8s ease 2.2s forwards;
+}
+
 .portada.visible.sonando .btn-rojo {
   animation:
     entrarAbajo 0.8s ease 2.2s forwards,
@@ -233,33 +266,66 @@ html, body {
 }
 
 @keyframes latido {
-  0%, 100% { box-shadow: 0 0.8cqh 2cqh rgba(0, 0, 0, 0.45); }
-  50%      { box-shadow: 0 0 4cqh rgba(220, 60, 70, 0.85); }
+
+  0%,
+  100% {
+    box-shadow: 0 0.8cqh 2cqh rgba(0, 0, 0, 0.45);
+  }
+
+  50% {
+    box-shadow: 0 0 4cqh rgba(220, 60, 70, 0.85);
+  }
 }
 
 @keyframes entrarArriba {
-  from { opacity: 0; transform: translateY(-3cqh); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-3cqh);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes entrarDerecha {
-  from { opacity: 0; transform: translateX(6cqw); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(6cqw);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes entrarAbajo {
-  from { opacity: 0; transform: translateY(3cqh); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(3cqh);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pop {
-  from { opacity: 0; transform: scale(0.4); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* ==========================================================================
-   PANTALLA 2: ¿CÓMO USAR ESTE TELÉFONO?
-   ========================================================================== */
+
 
 .pantalla {
   position: fixed;
@@ -281,7 +347,6 @@ html, body {
   background: #1a0f0b;
 }
 
-/* Foto del escritorio ampliada sobre el teléfono, desenfocada y oscurecida */
 .fondo-blur {
   position: absolute;
   left: 1%;
@@ -292,7 +357,6 @@ html, body {
   transform: scale(1.03);
 }
 
-/* Panel marrón a la izquierda */
 .panel {
   position: absolute;
   left: 0;
@@ -334,7 +398,6 @@ html, body {
   font-size: 2.4cqh;
 }
 
-/* Entrada escalonada al atender */
 .pantalla .instr-titulo,
 .pantalla .instr-texto,
 .pantalla .btn-rojo {
@@ -345,20 +408,29 @@ html, body {
   transform: translateX(-100%);
 }
 
-#instrucciones.visible .panel   { animation: panelEntra 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) 0.3s forwards; }
-.pantalla.visible .instr-titulo { animation: entrarArriba 0.8s ease 0.9s forwards; }
-.pantalla.visible .instr-texto  { animation: entrarArriba 0.8s ease 1.3s forwards; }
-.pantalla.visible .btn-rojo     { animation: entrarAbajo 0.8s ease 1.8s forwards; }
-
-@keyframes panelEntra {
-  to { transform: translateX(0); }
+#instrucciones.visible .panel {
+  animation: panelEntra 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) 0.3s forwards;
 }
 
-/* ==========================================================================
-   PANTALLA 3: TRES MENSAJES
-   ========================================================================== */
+.pantalla.visible .instr-titulo {
+  animation: entrarArriba 0.8s ease 0.9s forwards;
+}
 
-/* Teléfono resaltado (nítido sobre el fondo desenfocado) */
+.pantalla.visible .instr-texto {
+  animation: entrarArriba 0.8s ease 1.3s forwards;
+}
+
+.pantalla.visible .btn-rojo {
+  animation: entrarAbajo 0.8s ease 1.8s forwards;
+}
+
+@keyframes panelEntra {
+  to {
+    transform: translateX(0);
+  }
+}
+
+
 .telefono-rojo {
   position: absolute;
   left: 18.4%;
@@ -406,9 +478,17 @@ html, body {
   text-align: left;
 }
 
-.opcion-1 { top: 33.7%; }
-.opcion-2 { top: 49.8%; }
-.opcion-3 { top: 66.3%; }
+.opcion-1 {
+  top: 33.7%;
+}
+
+.opcion-2 {
+  top: 49.8%;
+}
+
+.opcion-3 {
+  top: 66.3%;
+}
 
 .opcion-num {
   display: flex;
@@ -439,14 +519,66 @@ html, body {
   box-shadow: 0 0 3cqh rgba(200, 50, 60, 0.55);
 }
 
-/* Al presionar (clic o tecla 1/2/3) */
 .opcion.presionada .opcion-num {
   transform: scale(0.9);
   background-color: var(--rojo-btn);
   box-shadow: 0 0 4cqh rgba(220, 60, 70, 0.85);
 }
 
-/* Entrada escalonada */
+.opcion.completada .opcion-num {
+  background-color: #f7c983;
+  border: 0.35cqh solid #fae4b9;
+  color: #ffffff;
+  box-shadow:
+    0 0.8cqh 2cqh rgba(0, 0, 0, 0.45),
+    0 0 1.8cqh rgba(247, 201, 131, 0.45);
+}
+
+.opcion.completada:hover .opcion-num {
+  background-color: #f2b33d;
+  border-color: #ffffff;
+  box-shadow: 0 0 3cqh rgba(242, 179, 61, 0.7);
+}
+
+.opcion.completada.presionada .opcion-num {
+  transform: scale(0.9);
+  background-color: #e09f2b;
+}
+
+.opcion-tilde {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 5.6cqh;
+  height: 5.6cqh;
+  margin-left: 0.5cqw;
+  flex-shrink: 0;
+}
+
+.tilde-icono {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0.2cqh 0.6cqh rgba(0, 0, 0, 0.6));
+}
+
+.opcion.completada .opcion-tilde {
+  display: inline-flex;
+  animation: popCheck 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popCheck {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 #menu .telefono-rojo,
 #menu .menu-titulo,
 #menu .menu-sub,
@@ -454,21 +586,43 @@ html, body {
   opacity: 0;
 }
 
-#menu.visible .telefono-rojo { animation: entrarDerecha 1s ease 0.3s forwards; }
-#menu.visible .menu-titulo   { animation: entrarArriba 0.8s ease 0.6s forwards; }
-#menu.visible .menu-sub      { animation: entrarArriba 0.8s ease 0.9s forwards; }
-#menu.visible .opcion-1      { animation: entrarIzquierda 0.6s ease 1.3s forwards; }
-#menu.visible .opcion-2      { animation: entrarIzquierda 0.6s ease 1.5s forwards; }
-#menu.visible .opcion-3      { animation: entrarIzquierda 0.6s ease 1.7s forwards; }
-
-@keyframes entrarIzquierda {
-  from { opacity: 0; transform: translateX(-4cqw); }
-  to   { opacity: 1; transform: translateX(0); }
+#menu.visible .telefono-rojo {
+  animation: entrarDerecha 1s ease 0.3s forwards;
 }
 
-/* ==========================================================================
-   PANTALLA 4: NÚCLEO 1 (DE UNA GRABACIÓN A UN DATO)
-   ========================================================================== */
+#menu.visible .menu-titulo {
+  animation: entrarArriba 0.8s ease 0.6s forwards;
+}
+
+#menu.visible .menu-sub {
+  animation: entrarArriba 0.8s ease 0.9s forwards;
+}
+
+#menu.visible .opcion-1 {
+  animation: entrarIzquierda 0.6s ease 1.3s forwards;
+}
+
+#menu.visible .opcion-2 {
+  animation: entrarIzquierda 0.6s ease 1.5s forwards;
+}
+
+#menu.visible .opcion-3 {
+  animation: entrarIzquierda 0.6s ease 1.7s forwards;
+}
+
+@keyframes entrarIzquierda {
+  from {
+    opacity: 0;
+    transform: translateX(-4cqw);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
 
 .canvas-nucleo {
   background: #120b08;
@@ -476,7 +630,7 @@ html, body {
   overflow: hidden;
 }
 
-/* Fondo de escritorio desenfocado y atenuado (como en la foto de referencia) */
+
 .fondo-nucleo {
   position: absolute;
   inset: -3%;
@@ -488,7 +642,7 @@ html, body {
   transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Capa de viñeta y difuminado adicional para resaltar los elementos */
+
 .nucleo-overlay {
   position: absolute;
   inset: 0;
@@ -525,10 +679,7 @@ html, body {
   z-index: 4;
 }
 
-/* ==========================================================================
-   TRES ELEMENTOS INTERACTIVOS (TELÉFONO, LIBRETA, DIARIO)
-   Se comportan como botones seleccionables con animación de agrandado
-   ========================================================================== */
+
 
 .elemento-interactivo {
   position: absolute;
@@ -544,7 +695,7 @@ html, body {
     filter 0.28s ease;
 }
 
-/* 1. Teléfono rojo sin fondo */
+
 .elem-tel {
   left: 0;
   top: 27%;
@@ -561,7 +712,7 @@ html, body {
   -webkit-user-drag: none;
 }
 
-/* 2. Libreta con texto de modalidades */
+
 .elem-libreta {
   left: 26.2%;
   top: 51.5%;
@@ -605,7 +756,6 @@ html, body {
   width: 41%;
 }
 
-/* 3. Diario Daily News */
 .elem-diario {
   left: 67%;
   top: 57%;
@@ -622,10 +772,6 @@ html, body {
   -webkit-user-drag: none;
 }
 
-/* ==========================================================================
-   BADGES NUMÉRICOS (4, 5, 6)
-   Cápsulas doradas con número blanco nítido y resplandor, idénticas a la referencia
-   ========================================================================== */
 
 .badge-numero {
   position: absolute;
@@ -663,15 +809,13 @@ html, body {
   user-select: none;
 }
 
-/* Posición específica de cada número */
-/* 4: sobre el hombro superior derecho del teléfono rojo */
+
 .badge-tel {
   top: 7%;
   right: 8%;
   animation: badgeFlotarTel 3s ease-in-out infinite alternate;
 }
 
-/* 5: centrado sobre la parte superior de la libreta */
 .badge-libreta {
   top: -2.8cqh;
   left: 50%;
@@ -679,7 +823,6 @@ html, body {
   animation: badgeFlotarLibreta 2.8s ease-in-out 0.3s infinite alternate;
 }
 
-/* 6: flotando en la parte superior izquierda del diario Daily News */
 .badge-diario {
   top: -2.5cqh;
   left: 6%;
@@ -687,21 +830,35 @@ html, body {
 }
 
 @keyframes badgeFlotarTel {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-0.6cqh); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-0.6cqh);
+  }
 }
 
 @keyframes badgeFlotarLibreta {
-  0% { transform: translate(-50%, 0); }
-  100% { transform: translate(-50%, -0.6cqh); }
+  0% {
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    transform: translate(-50%, -0.6cqh);
+  }
 }
 
 @keyframes badgeFlotarDiario {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-0.6cqh); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-0.6cqh);
+  }
 }
 
-/* --- Estados interactivos de los 3 elementos --- */
 .elemento-interactivo:hover {
   transform: translateY(-1.5cqh) scale(1.06);
   filter: drop-shadow(0 2.5cqh 3.5cqh rgba(0, 0, 0, 0.8)) brightness(1.08);
@@ -717,6 +874,7 @@ html, body {
 }
 
 .elemento-interactivo:hover .badge-tel,
+.elemento-interactivo:hover .badge-maquina,
 .elemento-interactivo:hover .badge-diario {
   transform: translateY(-0.8cqh) scale(1.1);
 }
@@ -734,29 +892,30 @@ html, body {
   filter: drop-shadow(0 0 1.5cqh rgba(255, 220, 140, 0.8)) brightness(1.1);
 }
 
-/* ==========================================================================
-   AL PRESIONAR O SELECCIONAR UN ELEMENTO (4, 5 ó 6):
-   El fondo se difumina y oscurece con más intensidad, los otros elementos
-   se atenúan suavemente, y el elemento seleccionado resalta junto a su badge.
-   ========================================================================== */
 
-#nucleo-1.elemento-activo .fondo-nucleo {
+
+#nucleo-1.elemento-activo .fondo-nucleo,
+#nucleo-3.elemento-activo .fondo-nucleo,
+#nucleo-2.elemento-activo .fondo-nucleo {
   filter: blur(1cqh) brightness(0.38) contrast(1.05);
   transform: scale(1.06);
 }
 
-#nucleo-1.elemento-activo .nucleo-overlay {
+#nucleo-1.elemento-activo .nucleo-overlay,
+#nucleo-3.elemento-activo .nucleo-overlay,
+#nucleo-2.elemento-activo .nucleo-overlay {
   background: radial-gradient(circle at 50% 50%, rgba(5, 3, 2, 0.35) 0%, rgba(5, 3, 2, 0.82) 100%);
 }
 
-#nucleo-1.elemento-activo .elemento-interactivo:not(.seleccionado) {
+#nucleo-1.elemento-activo .elemento-interactivo:not(.seleccionado),
+#nucleo-3.elemento-activo .elemento-interactivo:not(.seleccionado),
+#nucleo-2.elemento-activo .elemento-interactivo:not(.seleccionado) {
   opacity: 0.42;
   filter: brightness(0.65) blur(0.12cqh);
   transform: scale(0.96);
   transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
 }
 
-/* Estado seleccionado: resalta con resplandor dorado intenso */
 .elemento-interactivo.seleccionado {
   opacity: 1 !important;
   transform: translateY(-2.2cqh) scale(1.1) !important;
@@ -777,6 +936,7 @@ html, body {
 }
 
 .elemento-interactivo.seleccionado .badge-tel,
+.elemento-interactivo.seleccionado .badge-maquina,
 .elemento-interactivo.seleccionado .badge-diario {
   transform: translateY(-0.8cqh) scale(1.18);
 }
@@ -789,12 +949,12 @@ html, body {
   0% {
     filter: drop-shadow(0 0 1.8cqh rgba(255, 220, 140, 0.7)) drop-shadow(0 2.5cqh 3.5cqh rgba(0, 0, 0, 0.85)) brightness(1.1);
   }
+
   100% {
     filter: drop-shadow(0 0 3.2cqh rgba(255, 235, 160, 0.95)) drop-shadow(0 3cqh 4cqh rgba(0, 0, 0, 0.9)) brightness(1.18);
   }
 }
 
-/* Tipito 2 bajo la lámpara */
 .tipito-2 {
   position: absolute;
   left: 81.5%;
@@ -805,7 +965,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Botón volver # */
 .volver-wrap {
   position: absolute;
   left: 2.4%;
@@ -863,7 +1022,6 @@ html, body {
   text-shadow: 0 0.2cqh 0.8cqh rgba(0, 0, 0, 0.7);
 }
 
-/* Entrada escalonada de Núcleo 1 */
 #nucleo-1 .nucleo-titulo,
 #nucleo-1 .nucleo-sub,
 #nucleo-1 .elem-tel,
@@ -874,18 +1032,35 @@ html, body {
   opacity: 0;
 }
 
-#nucleo-1.visible .nucleo-titulo  { animation: entrarArriba 0.8s ease 0.2s forwards; }
-#nucleo-1.visible .nucleo-sub     { animation: entrarArriba 0.8s ease 0.4s forwards; }
-#nucleo-1.visible .elem-tel       { animation: entrarIzquierda 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.5s forwards; }
-#nucleo-1.visible .elem-libreta   { animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.7s forwards; }
-#nucleo-1.visible .elem-diario    { animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.9s forwards; }
-#nucleo-1.visible .tipito-2       { animation: entrarDerecha 0.8s ease 1.1s forwards; }
-#nucleo-1.visible .volver-wrap    { animation: entrarAbajo 0.7s ease 1.3s forwards; }
+#nucleo-1.visible .nucleo-titulo {
+  animation: entrarArriba 0.8s ease 0.2s forwards;
+}
 
-/* ==========================================================================
-   MODAL DETALLE: TELÉFONO / VISHING
-   Tarjeta de vino tinto con texto, imágenes y botón # para volver
-   ========================================================================== */
+#nucleo-1.visible .nucleo-sub {
+  animation: entrarArriba 0.8s ease 0.4s forwards;
+}
+
+#nucleo-1.visible .elem-tel {
+  animation: entrarIzquierda 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.5s forwards;
+}
+
+#nucleo-1.visible .elem-libreta {
+  animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.7s forwards;
+}
+
+#nucleo-1.visible .elem-diario {
+  animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.9s forwards;
+}
+
+#nucleo-1.visible .tipito-2 {
+  animation: entrarDerecha 0.8s ease 1.1s forwards;
+}
+
+#nucleo-1.visible .volver-wrap {
+  animation: entrarAbajo 0.7s ease 1.3s forwards;
+}
+
+
 
 .modal-detalle {
   position: absolute;
@@ -948,7 +1123,6 @@ html, body {
   text-shadow: 0 0 1.2cqh rgba(242, 179, 61, 0.45);
 }
 
-/* Contenedor de las dos imágenes */
 .detalle-imagenes {
   display: flex;
   justify-content: space-between;
@@ -988,7 +1162,6 @@ html, body {
   -webkit-user-drag: none;
 }
 
-/* Pie del modal */
 .detalle-footer {
   display: flex;
   align-items: center;
@@ -1032,9 +1205,7 @@ html, body {
   text-shadow: 0 0.2cqh 0.6cqh rgba(0, 0, 0, 0.8);
 }
 
-/* ==========================================================================
-   ESTILOS ESPECÍFICOS: MODAL LIBRETA (MODALIDADES DE ENGAÑO)
-   ========================================================================== */
+
 
 .detalle-top-libreta {
   display: flex;
@@ -1104,9 +1275,7 @@ html, body {
   text-shadow: 0 0.3cqh 0.8cqh rgba(0, 0, 0, 0.7);
 }
 
-/* ==========================================================================
-   ESTILOS ESPECÍFICOS: MODAL BUZÓN DE VOZ
-   ========================================================================== */
+
 
 .tarjeta-buzon {
   background: rgba(65, 23, 13, 0.96);
@@ -1250,9 +1419,7 @@ html, body {
   left: auto !important;
 }
 
-/* ==========================================================================
-   ESTILOS ESPECÍFICOS: PANTALLAS DE REPRODUCCIÓN DE AUDIO (01 y 02)
-   ========================================================================== */
+
 
 .tarjeta-audio {
   background: rgba(56, 16, 14, 0.96);
@@ -1292,8 +1459,16 @@ html, body {
 }
 
 @keyframes pulsoPunto {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  100% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 1cqh #f2b33d); }
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 1;
+    filter: drop-shadow(0 0 1cqh #f2b33d);
+  }
 }
 
 .audio-visual-wrap {
@@ -1329,17 +1504,18 @@ html, body {
     transform: scale(0.94);
     filter: invert(1) brightness(1.1) sepia(0.5) hue-rotate(340deg) drop-shadow(0 0 0.8cqh rgba(242, 179, 61, 0.6));
   }
+
   50% {
     transform: scale(1.04);
     filter: invert(1) brightness(1.3) sepia(0.8) hue-rotate(345deg) drop-shadow(0 0 2cqh rgba(255, 200, 75, 1));
   }
+
   100% {
     transform: scale(0.97);
     filter: invert(1) brightness(1.15) sepia(0.6) hue-rotate(340deg) drop-shadow(0 0 1.2cqh rgba(242, 179, 61, 0.75));
   }
 }
 
-/* Barra de progreso de reproducción */
 .audio-player-bar {
   display: flex;
   align-items: center;
@@ -1383,13 +1559,23 @@ html, body {
 }
 
 @keyframes audioPlayProgreso1 {
-  0% { width: 10%; }
-  100% { width: 95%; }
+  0% {
+    width: 10%;
+  }
+
+  100% {
+    width: 95%;
+  }
 }
 
 @keyframes audioPlayProgreso2 {
-  0% { width: 15%; }
-  100% { width: 95%; }
+  0% {
+    width: 15%;
+  }
+
+  100% {
+    width: 95%;
+  }
 }
 
 .audio-volver {
@@ -1398,9 +1584,25 @@ html, body {
   bottom: 2.5cqh;
 }
 
-/* ==========================================================================
-   ESTILOS ESPECÍFICOS: MODAL DIARIO (IDENTIDAD DIGITAL E INFOGRAFÍA)
-   ========================================================================== */
+.tipito-3 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 17.8cqw;
+  height: auto;
+  z-index: 40;
+  pointer-events: none;
+  filter: drop-shadow(0 1.2cqh 2.2cqh rgba(0, 0, 0, 0.65));
+  opacity: 0;
+  transform: translateY(2cqh);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) 0.15s;
+}
+
+.modal-detalle.visible .tipito-3 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .tarjeta-diario {
   background: rgba(56, 12, 16, 0.94);
@@ -1470,7 +1672,6 @@ html, body {
   border: 0.18cqh solid rgba(255, 255, 255, 0.12);
 }
 
-/* Infografía de barras */
 .grafico-infografia {
   flex: 1.25;
   display: flex;
@@ -1500,7 +1701,6 @@ html, body {
   position: relative;
 }
 
-/* Eje Y */
 .eje-y-wrap {
   display: flex;
   align-items: center;
@@ -1556,7 +1756,6 @@ html, body {
   padding-right: 0.1cqw;
 }
 
-/* Área de las barras */
 .grafico-barras-area {
   flex: 1;
   display: flex;
@@ -1689,7 +1888,468 @@ html, body {
   opacity: 0.92;
 }
 
+#nucleo-2 .elem-tel {
+  top: 30%;
+  width: 23.5%;
+}
+
+.elem-maquina {
+  left: 28.5%;
+  top: 43%;
+  width: 27.5%;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2.5cqh rgba(0, 0, 0, 0.7));
+}
+
+.img-maquina {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.badge-maquina {
+  top: -1.5cqh;
+  right: 2%;
+  animation: badgeFlotarDiario 2.8s ease-in-out 0.3s infinite alternate;
+}
+
+#nucleo-2 .badge-diario {
+  left: auto;
+  right: 4%;
+}
+
+#nucleo-2 .elem-diario {
+  left: 68%;
+  top: 58%;
+  width: 28%;
+}
+
+.tipito-4 {
+  position: absolute;
+  left: 3.6%;
+  top: 60%;
+  width: 12%;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2cqh rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+  z-index: 6;
+}
+
+#nucleo-2 .nucleo-titulo,
+#nucleo-2 .nucleo-sub,
+#nucleo-2 .elem-tel,
+#nucleo-2 .elem-maquina,
+#nucleo-2 .elem-diario,
+#nucleo-2 .tipito-4,
+#nucleo-2>.canvas>.volver-wrap {
+  opacity: 0;
+}
+
+#nucleo-2.visible .nucleo-titulo {
+  animation: entrarArriba 0.8s ease 0.2s forwards;
+}
+
+#nucleo-2.visible .nucleo-sub {
+  animation: entrarArriba 0.8s ease 0.4s forwards;
+}
+
+#nucleo-2.visible .elem-tel {
+  animation: entrarIzquierda 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.5s forwards;
+}
+
+#nucleo-2.visible .elem-maquina {
+  animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.7s forwards;
+}
+
+#nucleo-2.visible .elem-diario {
+  animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.9s forwards;
+}
+
+#nucleo-2.visible .tipito-4 {
+  animation: entrarIzquierda 0.8s ease 1.1s forwards;
+}
+
+#nucleo-2.visible>.canvas>.volver-wrap {
+  animation: entrarAbajo 0.7s ease 1.3s forwards;
+}
+
+.tarjeta-clonacion {
+  justify-content: space-between;
+}
+
+.detalle-clonacion {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3.5cqw;
+  width: 100%;
+  margin: 1cqh 0;
+}
+
+.clonacion-img-wrap {
+  width: 29%;
+  aspect-ratio: 439 / 331;
+  border-radius: 2.4cqh;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #000;
+  border: 0.18cqh solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1.2cqh 3cqh rgba(0, 0, 0, 0.75),
+    0 0 1.5cqh rgba(0, 0, 0, 0.5);
+}
+
+.clonacion-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.clonacion-dialogo {
+  background: #f6f6f4;
+  color: #2b2b2b;
+  padding: 1.8cqh 2.2cqw;
+  border-radius: 0.6cqh;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 2.7cqh;
+  line-height: 1.5;
+  box-shadow: 0 0.8cqh 2cqh rgba(0, 0, 0, 0.5);
+}
+
+.clonacion-dialogo p {
+  margin: 0;
+}
 
 
+.tarjeta-maquina,
+.tarjeta-diario2 {
+  background: rgba(98, 14, 24, 0.94);
+  border: 0.22cqh solid rgba(200, 50, 60, 0.35);
+  justify-content: space-between;
+}
+
+.deco-maquina {
+  position: absolute;
+  left: -3.5cqw;
+  top: -3.5cqh;
+  width: 22cqw;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2.2cqh rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.maquina-texto {
+  margin-left: 16.5cqw;
+  margin-top: 4.5cqh;
+}
+
+.maquina-imagen-wrap {
+  align-self: flex-end;
+  width: 27cqw;
+  aspect-ratio: 567 / 318;
+  margin-right: 5cqw;
+  border-radius: 3.2cqh;
+  overflow: hidden;
+  box-shadow: 0 1.2cqh 3cqh rgba(0, 0, 0, 0.75);
+  border: 0.18cqh solid rgba(255, 255, 255, 0.12);
+  background: #000;
+}
+
+.maquina-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.deco-diario2 {
+  position: absolute;
+  right: -2.5cqw;
+  top: -6.5cqh;
+  width: 25cqw;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2.2cqh rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.diario2-texto {
+  max-width: 66%;
+  margin-top: 2cqh;
+}
+
+.diario2-imagen-wrap {
+  position: relative;
+  align-self: flex-end;
+  width: 27.5cqw;
+  aspect-ratio: 842 / 461;
+  margin-right: 8cqw;
+}
+
+.diario2-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 3.2cqh;
+  box-shadow: 0 1.2cqh 3cqh rgba(0, 0, 0, 0.75);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.diario2-play {
+  position: absolute;
+  left: -5.5cqw;
+  top: 50%;
+  width: 4cqw;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.diario2-play svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0.2cqh 0.5cqh rgba(0, 0, 0, 0.5));
+}
 
 
+.elem-libreta3 {
+  left: -2.3%;
+  top: 46%;
+  width: 32.5%;
+  aspect-ratio: 612 / 414;
+  filter: drop-shadow(0 1.5cqh 2cqh rgba(0, 0, 0, 0.65));
+}
+
+.elem-libreta3 .libreta-texto {
+  font-size: 3cqh;
+}
+
+.badge-libreta3 {
+  top: -1cqh;
+  right: 0;
+  animation: badgeFlotarDiario 2.8s ease-in-out 0.3s infinite alternate;
+}
+
+.elem-carpeta {
+  left: 38.6%;
+  top: 59.5%;
+  width: 21%;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2.5cqh rgba(0, 0, 0, 0.7));
+}
+
+.img-carpeta {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.badge-carpeta {
+  top: -3.5cqh;
+  right: -2.5cqw;
+  animation: badgeFlotarDiario 3s ease-in-out 0.5s infinite alternate;
+}
+
+.elem-diario3 {
+  left: 65.3%;
+  top: 49.3%;
+  width: 31.5%;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2.5cqh rgba(0, 0, 0, 0.65));
+}
+
+.badge-diario3 {
+  top: -3cqh;
+  right: 2%;
+  animation: badgeFlotarDiario 3.2s ease-in-out 0.6s infinite alternate;
+}
+
+.elemento-interactivo:hover .badge-libreta3,
+.elemento-interactivo:hover .badge-carpeta,
+.elemento-interactivo:hover .badge-diario3 {
+  filter: brightness(1.1);
+}
+
+.tipito-5 {
+  position: absolute;
+  left: 1.5%;
+  top: 29%;
+  width: 16%;
+  height: auto;
+  filter: drop-shadow(0 1.5cqh 2cqh rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+  z-index: 6;
+}
+
+#nucleo-3 .nucleo-titulo,
+#nucleo-3 .nucleo-sub,
+#nucleo-3 .elem-libreta3,
+#nucleo-3 .elem-carpeta,
+#nucleo-3 .elem-diario3,
+#nucleo-3 .tipito-5,
+#nucleo-3>.canvas>.volver-wrap {
+  opacity: 0;
+}
+
+#nucleo-3.visible .nucleo-titulo {
+  animation: entrarArriba 0.8s ease 0.2s forwards;
+}
+
+#nucleo-3.visible .nucleo-sub {
+  animation: entrarArriba 0.8s ease 0.4s forwards;
+}
+
+#nucleo-3.visible .elem-libreta3 {
+  animation: entrarIzquierda 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.5s forwards;
+}
+
+#nucleo-3.visible .elem-carpeta {
+  animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.7s forwards;
+}
+
+#nucleo-3.visible .elem-diario3 {
+  animation: pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.9s forwards;
+}
+
+#nucleo-3.visible .tipito-5 {
+  animation: entrarIzquierda 0.8s ease 1.1s forwards;
+}
+
+#nucleo-3.visible>.canvas>.volver-wrap {
+  animation: entrarAbajo 0.7s ease 1.3s forwards;
+}
+
+.tarjeta-n3 {
+  background: rgba(98, 14, 24, 0.94);
+  border: 0.22cqh solid rgba(200, 50, 60, 0.35);
+  justify-content: space-between;
+}
+
+.n3-texto {
+  font-size: 3.9cqh;
+  margin-top: 1.5cqh;
+}
+
+.n3-imagenes {
+  display: flex;
+  width: 100%;
+}
+
+.deco-libreta3 {
+  position: absolute;
+  left: -5cqw;
+  top: -4.5cqh;
+  width: 33cqw;
+  aspect-ratio: 612 / 414;
+  filter: drop-shadow(0 1.2cqh 2cqh rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.deco-libreta3 .libreta-texto-modal {
+  font-size: 2.9cqh;
+}
+
+.n3-texto-libreta {
+  margin-left: 27.5cqw;
+}
+
+.n3-imagenes-libreta {
+  justify-content: flex-start;
+  padding-left: 29cqw;
+}
+
+.n3-iconos-ia {
+  width: 47cqw;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.deco-carpeta {
+  position: absolute;
+  right: -3.5cqw;
+  top: -4cqh;
+  width: 16.5cqw;
+  height: auto;
+  filter: drop-shadow(0 1.2cqh 2cqh rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.n3-texto-carpeta {
+  margin-right: 8cqw;
+}
+
+.n3-imagenes-carpeta {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6cqw;
+  padding-left: 8cqw;
+  margin: 1.5cqh 0;
+}
+
+.n3-fantino {
+  width: 24cqw;
+  height: auto;
+  border-radius: 3.2cqh;
+  box-shadow: 0 1.2cqh 3cqh rgba(0, 0, 0, 0.75);
+  display: block;
+}
+
+.n3-twitter {
+  width: 33cqw;
+  height: auto;
+  border-radius: 0.8cqh;
+  box-shadow: 0 1.2cqh 3cqh rgba(0, 0, 0, 0.6);
+  display: block;
+}
+
+.deco-diario3 {
+  position: absolute;
+  right: -3cqw;
+  top: -4.5cqh;
+  width: 25cqw;
+  height: auto;
+  filter: drop-shadow(0 1.2cqh 2cqh rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.n3-texto-diario {
+  max-width: 70%;
+}
+
+.n3-imagenes-diario {
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 6cqw;
+  padding-left: 13cqw;
+}
+
+.n3-perfil {
+  width: 25.8cqw;
+  height: auto;
+  display: block;
+  box-shadow: 0 1.2cqh 3cqh rgba(0, 0, 0, 0.5);
+}
+
+.n3-identidad {
+  width: 26.8cqw;
+  height: auto;
+  display: block;
+  box-shadow: 0 1.2cqh 3cqh rgba(0, 0, 0, 0.5);
+}
