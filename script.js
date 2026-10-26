@@ -14,19 +14,81 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnVolverMenu = document.getElementById('btn-volver-menu');
   const opciones = Array.from(document.querySelectorAll('.opcion'));
 
+  const pantallaDesafio = document.getElementById('pantalla-desafio');
+  const pantallaAudios = document.getElementById('pantalla-audios');
+  const btnRojoMenu = document.getElementById('btn-rojo-menu');
+  const btnRojoDesafio = document.getElementById('btn-rojo-desafio');
+  const btnVotoIA = document.getElementById('btn-voto-ia');
+  const btnVotoReal = document.getElementById('btn-voto-real');
+  const audioTituloNum = document.getElementById('audio-titulo-num');
+  const audioVisualizador = document.querySelector('.audio-visualizador');
+  const audioFeedback = document.getElementById('audio-feedback');
+  const modalAudiosResultado = document.getElementById('modal-audios-resultado');
+  const resultadoGrid = document.getElementById('resultado-grid');
+  const btnVolverInicio = document.getElementById('btn-volver-inicio');
+
+  let audioActualIndice = 1;
+  const votosAudios = {};
+  let audioTimer = null;
+
   const DURACION_INTRO_MS = 2000;
 
-  // 'intro' | 'portada' | 'instrucciones' | 'menu' | 'nucleo-1'
+  // 'intro' | 'portada' | 'instrucciones' | 'menu' | 'nucleo-1' | 'nucleo-2' | 'nucleo-3' | 'desafio-intro' | 'audios'
   let pantalla = 'intro';
 
-  const timbre = new Audio('Sonido-timbre-Telefono-SnapYT.App.mp3');
+  const timbre = document.getElementById('audio-timbre') || new Audio('Sonido-timbre-Telefono-SnapYT.App.mp3');
   timbre.loop = true;
   timbre.volume = 0.8;
+  try {
+    timbre.load();
+  } catch (e) { }
+
+  let intentoTimbreInterval = null;
 
   function sonarTimbre() {
-    if (pantalla !== 'portada' || !timbre.paused) return;
-    timbre.play().catch(() => { });
+    if (pantalla !== 'portada') return;
+
+    function intentar() {
+      if (pantalla !== 'portada') {
+        if (intentoTimbreInterval) {
+          clearInterval(intentoTimbreInterval);
+          intentoTimbreInterval = null;
+        }
+        return;
+      }
+      if (!timbre.paused) {
+        if (intentoTimbreInterval) {
+          clearInterval(intentoTimbreInterval);
+          intentoTimbreInterval = null;
+        }
+        return;
+      }
+      const p = timbre.play();
+      if (p !== undefined) {
+        p.then(() => {
+          if (intentoTimbreInterval) {
+            clearInterval(intentoTimbreInterval);
+            intentoTimbreInterval = null;
+          }
+        }).catch(() => { });
+      }
+    }
+
+    intentar();
+    if (timbre.paused && !intentoTimbreInterval) {
+      intentoTimbreInterval = setInterval(intentar, 300);
+    }
   }
+
+  timbre.addEventListener('canplaythrough', () => {
+    if (pantalla === 'portada' && timbre.paused) sonarTimbre();
+  });
+  window.addEventListener('focus', () => {
+    if (pantalla === 'portada' && timbre.paused) sonarTimbre();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && pantalla === 'portada' && timbre.paused) sonarTimbre();
+  });
 
   function mostrar(el) {
     el.classList.remove('oculta');
@@ -52,6 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function atender() {
     if (pantalla !== 'portada') return;
     pantalla = 'instrucciones';
+    if (intentoTimbreInterval) {
+      clearInterval(intentoTimbreInterval);
+      intentoTimbreInterval = null;
+    }
     timbre.pause();
     timbre.currentTime = 0;
     portada.classList.remove('sonando');
@@ -107,6 +173,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let nucleo2Completado = false;
   let nucleo3Completado = false;
 
+  function verificarTodosCompletados() {
+    if (nucleo1Completado && nucleo2Completado && nucleo3Completado) {
+      menu.classList.add('todos-completados');
+    }
+  }
+
   function marcarNucleoCompletado(num) {
     if (num === 1) nucleo1Completado = true;
     if (num === 2) nucleo2Completado = true;
@@ -115,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (opcion) {
       opcion.classList.add('completada');
     }
+    verificarTodosCompletados();
   }
 
   function elegirOpcion(num) {
@@ -472,21 +545,183 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Si el autoplay fue bloqueado, cualquier clic en la portada (que no sea atender) hace sonar el timbre
-  window.addEventListener('pointerdown', (e) => {
-    if (e.target !== btnRojo) sonarTimbre();
-  });
+  // Sonido sintetizado al reproducir cada uno de los 4 audios
+  function sonarAudioOnda(num) {
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const t0 = audioCtx.currentTime;
+      const freqs = [380, 460, 540, 620];
+      const baseFreq = freqs[(num - 1) % freqs.length];
+
+      const osc = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(baseFreq, t0);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.85, t0 + 1.8);
+
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(baseFreq * 1.5, t0);
+
+      gain.gain.setValueAtTime(0.08, t0);
+      gain.gain.exponentialRampToValueAtTime(0.001, t0 + 2.0);
+
+      osc.connect(gain);
+      osc2.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(t0);
+      osc2.start(t0);
+      osc.stop(t0 + 2.0);
+      osc2.stop(t0 + 2.0);
+    } catch (e) { }
+  }
+
+  function irAPantallaDesafio() {
+    if (pantalla !== 'menu') return;
+    if (!nucleo1Completado || !nucleo2Completado || !nucleo3Completado) return;
+    tonoTecla('#');
+    pantalla = 'desafio-intro';
+    ocultar(menu);
+    mostrar(pantallaDesafio);
+  }
+
+  function irAPantallaAudios() {
+    if (pantalla !== 'desafio-intro') return;
+    tonoTecla('#');
+    pantalla = 'audios';
+    ocultar(pantallaDesafio);
+    mostrar(pantallaAudios);
+    iniciarSecuenciaAudios();
+  }
+
+  function iniciarSecuenciaAudios() {
+    audioActualIndice = 1;
+    cargarAudio(1);
+  }
+
+  function cargarAudio(num) {
+    audioActualIndice = num;
+    if (audioTituloNum) {
+      audioTituloNum.textContent = `Audio número ${num}`;
+    }
+    if (audioVisualizador) {
+      audioVisualizador.classList.add('reproduciendo');
+    }
+    sonarAudioOnda(num);
+    if (audioTimer) clearTimeout(audioTimer);
+    audioTimer = setTimeout(() => {
+      if (audioVisualizador) audioVisualizador.classList.remove('reproduciendo');
+    }, 2200);
+  }
+
+  function emitirVoto(tipo) {
+    if (pantalla !== 'audios') return;
+    if (modalAudiosResultado && modalAudiosResultado.classList.contains('visible')) return;
+
+    sonarClicElemento('tel');
+    votosAudios[audioActualIndice] = tipo;
+
+    const btn = tipo === 'IA' ? btnVotoIA : btnVotoReal;
+    if (btn) {
+      btn.classList.add('presionado');
+      setTimeout(() => btn.classList.remove('presionado'), 220);
+    }
+
+    if (audioFeedback) {
+      audioFeedback.textContent = `Voto registrado: ${tipo}`;
+      audioFeedback.classList.add('visible');
+      setTimeout(() => audioFeedback.classList.remove('visible'), 650);
+    }
+
+    if (audioActualIndice < 4) {
+      setTimeout(() => {
+        cargarAudio(audioActualIndice + 1);
+      }, 800);
+    } else {
+      setTimeout(() => {
+        mostrarResultadosFinales();
+      }, 850);
+    }
+  }
+
+  function mostrarResultadosFinales() {
+    if (!resultadoGrid) return;
+    resultadoGrid.innerHTML = '';
+    for (let i = 1; i <= 4; i++) {
+      const item = document.createElement('div');
+      item.className = 'resultado-item';
+      item.innerHTML = `<span>Audio ${i}</span><span class="resultado-voto">${votosAudios[i] || '-'}</span>`;
+      resultadoGrid.appendChild(item);
+    }
+    if (modalAudiosResultado) {
+      modalAudiosResultado.classList.add('visible');
+      modalAudiosResultado.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  function volverAlInicio() {
+    if (modalAudiosResultado) {
+      modalAudiosResultado.classList.remove('visible');
+      modalAudiosResultado.setAttribute('aria-hidden', 'true');
+    }
+    ocultar(pantallaAudios);
+    pantalla = 'menu';
+    mostrar(menu);
+  }
+
+  if (btnRojoMenu) {
+    btnRojoMenu.addEventListener('click', irAPantallaDesafio);
+  }
+  if (btnRojoDesafio) {
+    btnRojoDesafio.addEventListener('click', irAPantallaAudios);
+  }
+  if (btnVotoIA) {
+    btnVotoIA.addEventListener('click', () => emitirVoto('IA'));
+  }
+  if (btnVotoReal) {
+    btnVotoReal.addEventListener('click', () => emitirVoto('Real'));
+  }
+  if (btnVolverInicio) {
+    btnVolverInicio.addEventListener('click', volverAlInicio);
+  }
 
   // Teclado
   window.addEventListener('keydown', (e) => {
     const esRojo = e.key === 'Enter' || e.key === ' ';
 
     if (pantalla === 'portada') {
-      if (esRojo) { e.preventDefault(); atender(); } else sonarTimbre();
+      if (esRojo) { e.preventDefault(); atender(); }
     } else if (pantalla === 'instrucciones') {
       if (esRojo) { e.preventDefault(); irAlMenu(); }
     } else if (pantalla === 'menu') {
-      if (['1', '2', '3'].includes(e.key)) elegirOpcion(e.key);
+      if (esRojo && nucleo1Completado && nucleo2Completado && nucleo3Completado) {
+        e.preventDefault();
+        irAPantallaDesafio();
+      } else if (['1', '2', '3'].includes(e.key)) {
+        elegirOpcion(e.key);
+      }
+    } else if (pantalla === 'desafio-intro') {
+      if (esRojo) {
+        e.preventDefault();
+        irAPantallaAudios();
+      }
+    } else if (pantalla === 'audios') {
+      if (modalAudiosResultado && modalAudiosResultado.classList.contains('visible')) {
+        if (esRojo || e.key === '#' || e.key === 'Escape') {
+          e.preventDefault();
+          volverAlInicio();
+        }
+      } else {
+        if (e.key === 'ArrowLeft' || e.key === '1' || e.key.toLowerCase() === 'i') {
+          e.preventDefault();
+          emitirVoto('IA');
+        } else if (e.key === 'ArrowRight' || e.key === '2' || e.key.toLowerCase() === 'r') {
+          e.preventDefault();
+          emitirVoto('Real');
+        }
+      }
     } else if (pantalla === 'nucleo-1' || pantalla === 'nucleo-2' || pantalla === 'nucleo-3') {
       if (e.key === '#' || e.key === 'Backspace' || e.key === 'Escape') {
         e.preventDefault();

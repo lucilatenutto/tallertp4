@@ -17,6 +17,7 @@
 
 <body>
 
+  <audio id="audio-timbre" src="Sonido-timbre-Telefono-SnapYT.App.mp3" preload="auto" loop></audio>
 
   <div id="intro" class="intro" title="Hacé clic para atender">
     <img src="musica1.png" alt="Onda de sonido: el teléfono está sonando" class="onda">
@@ -38,7 +39,7 @@
         </svg>
       </div>
 
-      <img src="assets/tipito.png" alt="Personaje detective con pipa" class="tipito">
+      <img src="assets/tipitooriginal.png" alt="Personaje detective con pipa" class="tipito">
 
 
       <button id="btn-rojo" class="btn-rojo">Botón rojo</button>
@@ -104,6 +105,8 @@
           </svg>
         </span>
       </button>
+
+      <button id="btn-rojo-menu" class="btn-rojo btn-rojo-menu" aria-label="Continuar al desafío">Botón rojo</button>
     </div>
   </section>
 
@@ -907,6 +910,83 @@
           <span class="hash-simbolo">#</span>
         </button>
         <p class="volver-hint">pulsa el botón #<br>para volver</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PANTALLA DESAFÍO: TIPITO 7 INTRO -->
+  <section id="pantalla-desafio" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-desafio">
+      <img src="assets/fondo-escritorio.png" alt="" class="fondo-blur">
+      <div class="desafio-panel">
+        <h2 class="desafio-titulo">
+          Te llegó un mensaje de voz.<br>
+          Escuchalo y elegí:
+        </h2>
+        <p class="desafio-pregunta">
+          ¿REAL o IA? ¿Es una voz auténtica<br>
+          o fue generada artificialmente?
+        </p>
+
+        <div class="desafio-pie">
+          <img src="assets/tipito7.png" alt="Personaje detective pensativo" class="tipito-7">
+          <p class="desafio-instruccion">
+            Elegí si la llamada<br>
+            es REAL o IA usando<br>
+            los botones ubicados<br>
+            al lado del teléfono.
+          </p>
+          <button id="btn-rojo-desafio" class="btn-rojo btn-rojo-desafio">Botón rojo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PANTALLA AUDIOS: 4 AUDIOS (IA / REAL) -->
+  <section id="pantalla-audios" class="pantalla" aria-hidden="true">
+    <div class="canvas canvas-audios">
+      <img src="assets/fondo-escritorio.png" alt="" class="fondo-audios">
+      <div class="audios-overlay" aria-hidden="true"></div>
+
+      <div class="audio-pantalla-header">
+        <h2 id="audio-titulo-num" class="audio-titulo-num">Audio número 1</h2>
+      </div>
+
+      <div class="audio-visualizador-wrap">
+        <div class="audio-visualizador">
+          <img src="assets/onda-audio.png" alt="Onda de audio" class="img-onda-audio">
+        </div>
+      </div>
+
+      <!-- Botón IA (Izquierda) -->
+      <div class="eleccion-grupo eleccion-ia">
+        <span class="eleccion-label">IA</span>
+        <button id="btn-voto-ia" class="btn-arcade" data-voto="IA" aria-label="Elegir IA">
+          <img src="assets/boton-pulsador.png" alt="Botón IA" class="img-boton-arcade">
+        </button>
+      </div>
+
+      <!-- Botón Real (Derecha) -->
+      <div class="eleccion-grupo eleccion-real">
+        <span class="eleccion-label">Real</span>
+        <button id="btn-voto-real" class="btn-arcade" data-voto="Real" aria-label="Elegir Real">
+          <img src="assets/boton-pulsador.png" alt="Botón Real" class="img-boton-arcade">
+        </button>
+      </div>
+
+      <!-- Toast / feedback de voto -->
+      <div id="audio-feedback" class="audio-feedback" aria-live="polite"></div>
+
+      <!-- Modal de resultado final tras los 4 audios -->
+      <div id="modal-audios-resultado" class="modal-audios-resultado" aria-hidden="true">
+        <div class="resultado-panel">
+          <h2 class="resultado-titulo">¡Desafío completado!</h2>
+          <p class="resultado-sub">Has evaluado los 4 audios:</p>
+          <div class="resultado-grid" id="resultado-grid"></div>
+          <button id="btn-volver-inicio" class="btn-rojo btn-rojo-resultado">Volver al inicio</button>
+        </div>
       </div>
     </div>
   </section>
